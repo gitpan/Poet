@@ -1,0 +1,83 @@
+{
+   "abstract" : "The Mason web framework",
+   "author" : [
+      "Jonathan Swartz <swartz@pobox.com>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 4.200008, CPAN::Meta::Converter version 2.113640",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Poet",
+   "no_index" : {
+      "directory" : [
+         "lib/Poet/t",
+         "lib/Poet/Test"
+      ]
+   },
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "6.30",
+            "File::ShareDir::Install" : "0.03"
+         }
+      },
+      "runtime" : {
+         "recommends" : {
+            "Log::Any::Adapter::Log4perl" : 0,
+            "Log::Log4perl" : 0
+         },
+         "requires" : {
+            "CHI" : "0.52",
+            "Capture::Tiny" : 0,
+            "File::ShareDir" : 0,
+            "File::ShareDir::Install" : 0,
+            "File::Slurp" : 0,
+            "File::Spec::Functions" : 0,
+            "Guard" : 0,
+            "Log::Any::Adapter" : 0,
+            "Mason" : "2.00",
+            "Mason::Plugin::Cache" : 0,
+            "Mason::Plugin::HTMLFilters" : 0,
+            "Mason::Plugin::RouterSimple" : 0,
+            "Method::Signatures::Simple" : "1.02",
+            "Moose" : "1.15",
+            "MooseX::App::Cmd" : 0,
+            "MooseX::HasDefaults::RO" : 0,
+            "MooseX::StrictConstructor" : 0,
+            "Plack" : 0,
+            "Plack::Middleware::Session" : 0,
+            "Plack::Session::Store::Cache" : 0,
+            "Try::Tiny" : 0,
+            "URI" : 0,
+            "URI::Escape" : 0,
+            "YAML::XS" : 0
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Test::Class" : 0,
+            "Test::Most" : 0,
+            "Test::WWW::Mechanize::PSGI" : 0
+         }
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "mailto" : "bug-poet@rt.cpan.org",
+         "web" : "http://rt.cpan.org/NoAuth/Bugs.html?Dist=Poet"
+      },
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/jonswar/perl-poet.git",
+         "web" : "https://github.com/jonswar/perl-poet"
+      }
+   },
+   "version" : "0.01"
+}
+
