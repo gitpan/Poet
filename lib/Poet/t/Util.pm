@@ -1,6 +1,6 @@
 package Poet::t::Util;
 BEGIN {
-  $Poet::t::Util::VERSION = '0.01';
+  $Poet::t::Util::VERSION = '0.02';
 }
 use Poet::Util qw(read_file);
 use Poet::Test::Util;

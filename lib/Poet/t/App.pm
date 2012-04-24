@@ -1,6 +1,6 @@
 package Poet::t::App;
 BEGIN {
-  $Poet::t::App::VERSION = '0.01';
+  $Poet::t::App::VERSION = '0.02';
 }
 use Poet::Test::Util;
 use Test::Most;

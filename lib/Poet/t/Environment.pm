@@ -1,6 +1,6 @@
 package Poet::t::Environment;
 BEGIN {
-  $Poet::t::Environment::VERSION = '0.01';
+  $Poet::t::Environment::VERSION = '0.02';
 }
 use File::Slurp;
 use Poet::Environment::Generator;

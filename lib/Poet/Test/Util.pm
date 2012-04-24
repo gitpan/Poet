@@ -1,6 +1,6 @@
 package Poet::Test::Util;
 BEGIN {
-  $Poet::Test::Util::VERSION = '0.01';
+  $Poet::Test::Util::VERSION = '0.02';
 }
 use Cwd qw(realpath);
 use File::Basename;

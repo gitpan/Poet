@@ -1,6 +1,6 @@
 package Poet::t::Conf;
 BEGIN {
-  $Poet::t::Conf::VERSION = '0.01';
+  $Poet::t::Conf::VERSION = '0.02';
 }
 use Poet::Test::Util;
 use Test::Most;

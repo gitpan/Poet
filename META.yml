@@ -31,6 +31,7 @@ requires:
   File::Slurp: 0
   File::Spec::Functions: 0
   Guard: 0
+  JSON::XS: 0
   Log::Any::Adapter: 0
   Mason: 2.00
   Mason::Plugin::Cache: 0
@@ -51,4 +52,4 @@ requires:
 resources:
   bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=Poet
   repository: git://github.com/jonswar/perl-poet.git
-version: 0.01
+version: 0.02

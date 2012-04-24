@@ -1,6 +1,6 @@
 package Poet::Util::Web;
 BEGIN {
-  $Poet::Util::Web::VERSION = '0.01';
+  $Poet::Util::Web::VERSION = '0.02';
 }
 use Data::Dumper;
 use URI;

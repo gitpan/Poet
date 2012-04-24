@@ -36,6 +36,7 @@ my %WriteMakefileArgs = (
     'File::Slurp' => '0',
     'File::Spec::Functions' => '0',
     'Guard' => '0',
+    'JSON::XS' => '0',
     'Log::Any::Adapter' => '0',
     'Mason' => '2.00',
     'Mason::Plugin::Cache' => '0',
@@ -54,7 +55,7 @@ my %WriteMakefileArgs = (
     'URI::Escape' => '0',
     'YAML::XS' => '0'
   },
-  'VERSION' => '0.01',
+  'VERSION' => '0.02',
   'test' => {
     'TESTS' => 't/*.t'
   }

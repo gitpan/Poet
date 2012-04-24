@@ -1,6 +1,6 @@
 package Poet::t::Script;
 BEGIN {
-  $Poet::t::Script::VERSION = '0.01';
+  $Poet::t::Script::VERSION = '0.02';
 }
 use Capture::Tiny qw(capture);
 use Cwd qw(realpath);

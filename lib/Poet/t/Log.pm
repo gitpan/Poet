@@ -1,11 +1,11 @@
 package Poet::t::Log;
 BEGIN {
-  $Poet::t::Log::VERSION = '0.01';
+  $Poet::t::Log::VERSION = '0.02';
 }
 use Cwd qw(realpath);
 use File::Temp qw(tempdir);
+use JSON::XS;
 use Poet::Test::Util;
-use Poet::Util qw(json_encode);
 use Test::Most;
 use strict;
 use warnings;
@@ -22,7 +22,7 @@ sub test_log_config : Tests {
         my ( $conf_settings, $expected ) = @_;
         my $lex      = $conf->set_local($conf_settings);
         my $log_conf = Poet::Log->generate_log4perl_config();
-        is( $log_conf, $expected, json_encode($conf_settings) );
+        is( $log_conf, $expected, encode_json($conf_settings) );
     };
 
     my $default_layout =
