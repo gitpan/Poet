@@ -5,7 +5,6 @@ MANIFEST
 META.json
 META.yml
 Makefile.PL
-README
 bin/poet
 lib/Poet.pm
 lib/Poet/App.pm
@@ -58,6 +57,7 @@ share/generate.skel/conf/layer/development.cfg
 share/generate.skel/conf/layer/production.cfg
 share/generate.skel/conf/local.cfg
 share/generate.skel/data/EMPTY
+share/generate.skel/db/EMPTY
 share/generate.skel/lib/MyApp/Conf.pm
 share/generate.skel/lib/MyApp/Log.pm
 share/generate.skel/lib/MyApp/Mason.pm

@@ -1,6 +1,6 @@
 package Poet::t::Environment;
 BEGIN {
-  $Poet::t::Environment::VERSION = '0.02';
+  $Poet::t::Environment::VERSION = '0.03';
 }
 use File::Slurp;
 use Poet::Environment::Generator;
@@ -31,3 +31,24 @@ sub test_environment : Tests {
 }
 
 1;
+
+__END__
+=pod
+
+=head1 SEE ALSO
+
+L<Poet|Poet>
+
+=head1 AUTHOR
+
+Jonathan Swartz <swartz@pobox.com>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2012 by Jonathan Swartz.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+

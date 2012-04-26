@@ -1,6 +1,6 @@
 package Poet::t::Import;
 BEGIN {
-  $Poet::t::Import::VERSION = '0.02';
+  $Poet::t::Import::VERSION = '0.03';
 }
 use Poet::Test::Util;
 use Test::Most;
@@ -23,7 +23,7 @@ sub test_import_vars : Tests {
     {
         package TestImportVars;
 BEGIN {
-  $TestImportVars::VERSION = '0.02';
+  $TestImportVars::VERSION = '0.03';
 }
         BEGIN { $importer->export_to_level( 0, qw($cache $conf $env) ) }
         use Test::Most;
@@ -37,7 +37,7 @@ sub test_import_methods : Tests {
     {
         package TestImportMethods1;
 BEGIN {
-  $TestImportMethods1::VERSION = '0.02';
+  $TestImportMethods1::VERSION = '0.03';
 }
         BEGIN { $importer->export_to_level(0) }
         use Test::Most;
@@ -47,7 +47,7 @@ BEGIN {
     {
         package TestImportMethods2;
 BEGIN {
-  $TestImportMethods2::VERSION = '0.02';
+  $TestImportMethods2::VERSION = '0.03';
 }
         BEGIN { $importer->export_to_level( 0, qw(:file) ) }
         use Test::Most;
@@ -58,7 +58,7 @@ BEGIN {
     {
         package TestImportMethods3;
 BEGIN {
-  $TestImportMethods3::VERSION = '0.02';
+  $TestImportMethods3::VERSION = '0.03';
 }
         BEGIN { $importer->export_to_level( 0, qw(:web) ) }
         use Test::Most;
@@ -69,3 +69,24 @@ BEGIN {
 }
 
 1;
+
+__END__
+=pod
+
+=head1 SEE ALSO
+
+L<Poet|Poet>
+
+=head1 AUTHOR
+
+Jonathan Swartz <swartz@pobox.com>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2012 by Jonathan Swartz.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+

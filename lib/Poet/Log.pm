@@ -1,6 +1,6 @@
 package Poet::Log;
 BEGIN {
-  $Poet::Log::VERSION = '0.02';
+  $Poet::Log::VERSION = '0.03';
 }
 use Poet qw($conf $env);
 use File::Spec::Functions qw(rel2abs);

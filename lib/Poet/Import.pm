@@ -1,6 +1,6 @@
 package Poet::Import;
 BEGIN {
-  $Poet::Import::VERSION = '0.02';
+  $Poet::Import::VERSION = '0.03';
 }
 use Carp;
 use Poet::Moose;

@@ -1,6 +1,6 @@
 package Poet::App::Command::new;
 BEGIN {
-  $Poet::App::Command::new::VERSION = '0.02';
+  $Poet::App::Command::new::VERSION = '0.03';
 }
 use Poet::Moose;
 use Poet::Types;
@@ -29,6 +29,11 @@ Options:';
 method abstract ()    { "Create a new Poet installation" }
 method description () { $description }
 method usage_desc ()  { "poet new [-d dir] [-q] <AppName>" }
+
+method BUILD ($args) {
+    $self->{app_name} = ucfirst( $args->{app_name} );
+    $self->{app_name} =~ s/_([a-z])/"_" . uc($1)/ge;
+}
 
 method _build_dir () {
     return $self->app_name_to_dir( $self->app_name );
@@ -59,3 +64,24 @@ method execute ($opt, $args) {
 }
 
 1;
+
+__END__
+=pod
+
+=head1 SEE ALSO
+
+L<Poet|Poet>
+
+=head1 AUTHOR
+
+Jonathan Swartz <swartz@pobox.com>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2012 by Jonathan Swartz.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
