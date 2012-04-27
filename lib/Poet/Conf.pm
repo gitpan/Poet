@@ -1,6 +1,6 @@
 package Poet::Conf;
 BEGIN {
-  $Poet::Conf::VERSION = '0.03';
+  $Poet::Conf::VERSION = '0.04';
 }
 use Carp;
 use Cwd qw(realpath);

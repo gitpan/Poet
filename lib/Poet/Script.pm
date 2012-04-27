@@ -1,13 +1,13 @@
 package Poet::Script;
 BEGIN {
-  $Poet::Script::VERSION = '0.03';
+  $Poet::Script::VERSION = '0.04';
 }
 use Cwd qw(realpath);
 use File::Basename;
 use File::Spec::Functions qw(rel2abs);
 use Method::Signatures::Simple;
 use Poet::Environment;
-use Poet::Util qw(can_load read_file);
+use Poet::Tools qw(can_load read_file);
 use strict;
 use warnings;
 

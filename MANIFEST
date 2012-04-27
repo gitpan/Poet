@@ -26,14 +26,16 @@ lib/Poet/Mason.pm
 lib/Poet/Mason/Plugin.pm
 lib/Poet/Mason/Plugin/Compilation.pm
 lib/Poet/Mason/Plugin/Request.pm
+lib/Poet/Mechanize.pm
 lib/Poet/Moose.pm
 lib/Poet/Plack/Request.pm
 lib/Poet/Plack/Response.pm
 lib/Poet/Script.pm
 lib/Poet/Server.pm
-lib/Poet/Test/Util.pm
+lib/Poet/TAGS
+lib/Poet/Test/Class.pm
+lib/Poet/Tools.pm
 lib/Poet/Types.pm
-lib/Poet/Util.pm
 lib/Poet/Util/Debug.pm
 lib/Poet/Util/File.pm
 lib/Poet/Util/Web.pm
@@ -42,6 +44,7 @@ lib/Poet/t/Conf.pm
 lib/Poet/t/Environment.pm
 lib/Poet/t/Import.pm
 lib/Poet/t/Log.pm
+lib/Poet/t/NoLog4perl.pm
 lib/Poet/t/PSGIHandler.pm
 lib/Poet/t/Run.pm
 lib/Poet/t/Script.pm
@@ -78,5 +81,5 @@ t/Log.t
 t/PSGIHandler.t
 t/Script.t
 t/Util.t
+t/author-NoLog4perl.t
 t/author-Run.t
-t/author-no_log4perl.t

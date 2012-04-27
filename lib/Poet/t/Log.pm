@@ -1,17 +1,11 @@
 package Poet::t::Log;
 BEGIN {
-  $Poet::t::Log::VERSION = '0.03';
+  $Poet::t::Log::VERSION = '0.04';
 }
-use Cwd qw(realpath);
-use File::Temp qw(tempdir);
 use JSON::XS;
-use Poet::Test::Util;
-use Test::Most;
-use strict;
-use warnings;
-use base qw(Test::Class);
+use Test::Class::Most parent => 'Poet::Test::Class';
 
-initialize_temp_env();
+__PACKAGE__->initialize_temp_env();
 
 sub test_log_config : Tests {
     my $env      = Poet::Environment->current_env;
@@ -86,24 +80,3 @@ log4perl.appender.Bar_NonErrors.stderr = 0
 }
 
 1;
-
-__END__
-=pod
-
-=head1 SEE ALSO
-
-L<Poet|Poet>
-
-=head1 AUTHOR
-
-Jonathan Swartz <swartz@pobox.com>
-
-=head1 COPYRIGHT AND LICENSE
-
-This software is copyright (c) 2012 by Jonathan Swartz.
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
-
-=cut
-

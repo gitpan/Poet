@@ -1,20 +1,16 @@
 package Poet::t::Run;
 BEGIN {
-  $Poet::t::Run::VERSION = '0.03';
+  $Poet::t::Run::VERSION = '0.04';
 }
-use Poet::Test::Util;
-use Poet::Util qw(read_file);
+use Test::Class::Most parent => 'Poet::Test::Class';
+use Poet::Tools qw(read_file);
 use Guard;
 use IO::Socket;
-use IPC::System::Simple qw(run);
 use Test::WWW::Mechanize;
-use Test::Most;
-use strict;
-use warnings;
-use base qw(Test::Class);
 
 sub test_run : Tests {
-    my $env = temp_env(
+    my $self = shift;
+    my $env  = $self->temp_env(
         conf => { layer => 'development', server => { port => 9999 } } );
     my $root_dir = $env->root_dir;
     my $run_log  = "$root_dir/logs/run.log";
@@ -51,24 +47,3 @@ sub is_port_active {
 }
 
 1;
-
-__END__
-=pod
-
-=head1 SEE ALSO
-
-L<Poet|Poet>
-
-=head1 AUTHOR
-
-Jonathan Swartz <swartz@pobox.com>
-
-=head1 COPYRIGHT AND LICENSE
-
-This software is copyright (c) 2012 by Jonathan Swartz.
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
-
-=cut
-

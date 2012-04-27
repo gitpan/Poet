@@ -14,8 +14,7 @@ my %WriteMakefileArgs = (
   'ABSTRACT' => 'The Mason web framework',
   'AUTHOR' => 'Jonathan Swartz <swartz@pobox.com>',
   'BUILD_REQUIRES' => {
-    'Test::Class' => '0',
-    'Test::Most' => '0',
+    'Test::Class::Most' => '0',
     'Test::WWW::Mechanize::PSGI' => '0'
   },
   'CONFIGURE_REQUIRES' => {
@@ -55,7 +54,7 @@ my %WriteMakefileArgs = (
     'URI::Escape' => '0',
     'YAML::XS' => '0'
   },
-  'VERSION' => '0.03',
+  'VERSION' => '0.04',
   'test' => {
     'TESTS' => 't/*.t'
   }

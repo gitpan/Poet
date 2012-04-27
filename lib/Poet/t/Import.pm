@@ -1,17 +1,13 @@
 package Poet::t::Import;
 BEGIN {
-  $Poet::t::Import::VERSION = '0.03';
+  $Poet::t::Import::VERSION = '0.04';
 }
-use Poet::Test::Util;
-use Test::Most;
-use strict;
-use warnings;
-use base qw(Test::Class);
+use Test::Class::Most parent => 'Poet::Test::Class';
 
 my ( $temp_env, $importer );
 
 BEGIN {
-    $temp_env = initialize_temp_env();
+    $temp_env = __PACKAGE__->initialize_temp_env();
     $importer = $temp_env->importer;
 }
 
@@ -23,7 +19,7 @@ sub test_import_vars : Tests {
     {
         package TestImportVars;
 BEGIN {
-  $TestImportVars::VERSION = '0.03';
+  $TestImportVars::VERSION = '0.04';
 }
         BEGIN { $importer->export_to_level( 0, qw($cache $conf $env) ) }
         use Test::Most;
@@ -37,7 +33,7 @@ sub test_import_methods : Tests {
     {
         package TestImportMethods1;
 BEGIN {
-  $TestImportMethods1::VERSION = '0.03';
+  $TestImportMethods1::VERSION = '0.04';
 }
         BEGIN { $importer->export_to_level(0) }
         use Test::Most;
@@ -47,7 +43,7 @@ BEGIN {
     {
         package TestImportMethods2;
 BEGIN {
-  $TestImportMethods2::VERSION = '0.03';
+  $TestImportMethods2::VERSION = '0.04';
 }
         BEGIN { $importer->export_to_level( 0, qw(:file) ) }
         use Test::Most;
@@ -58,7 +54,7 @@ BEGIN {
     {
         package TestImportMethods3;
 BEGIN {
-  $TestImportMethods3::VERSION = '0.03';
+  $TestImportMethods3::VERSION = '0.04';
 }
         BEGIN { $importer->export_to_level( 0, qw(:web) ) }
         use Test::Most;
@@ -69,24 +65,3 @@ BEGIN {
 }
 
 1;
-
-__END__
-=pod
-
-=head1 SEE ALSO
-
-L<Poet|Poet>
-
-=head1 AUTHOR
-
-Jonathan Swartz <swartz@pobox.com>
-
-=head1 COPYRIGHT AND LICENSE
-
-This software is copyright (c) 2012 by Jonathan Swartz.
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
-
-=cut
-

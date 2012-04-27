@@ -1,17 +1,14 @@
 package Poet::t::Util;
 BEGIN {
-  $Poet::t::Util::VERSION = '0.03';
+  $Poet::t::Util::VERSION = '0.04';
 }
-use Poet::Util qw(read_file);
-use Poet::Test::Util;
+use Test::Class::Most parent => 'Poet::Test::Class';
+use Poet::Tools qw(read_file);
 use Poet::Util::Debug qw(:all);
 use Capture::Tiny qw(capture_stderr);
-use Test::Most;
-use strict;
-use warnings;
-use base qw(Test::Class);
 
-my $env = initialize_temp_env( conf => { layer => 'development' } );
+my $env =
+  __PACKAGE__->initialize_temp_env( conf => { layer => 'development' } );
 
 sub test_debug : Tests {
     my $data = { foo => 5, bar => 6 };
@@ -29,24 +26,3 @@ sub test_debug : Tests {
 }
 
 1;
-
-__END__
-=pod
-
-=head1 SEE ALSO
-
-L<Poet|Poet>
-
-=head1 AUTHOR
-
-Jonathan Swartz <swartz@pobox.com>
-
-=head1 COPYRIGHT AND LICENSE
-
-This software is copyright (c) 2012 by Jonathan Swartz.
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
-
-=cut
-

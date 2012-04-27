@@ -1,12 +1,12 @@
 package Poet::Log;
 BEGIN {
-  $Poet::Log::VERSION = '0.03';
+  $Poet::Log::VERSION = '0.04';
 }
 use Poet qw($conf $env);
 use File::Spec::Functions qw(rel2abs);
 use Log::Any::Adapter;
 use Method::Signatures::Simple;
-use Poet::Util qw(can_load read_file write_file);
+use Poet::Tools qw(can_load read_file write_file);
 use strict;
 use warnings;
 

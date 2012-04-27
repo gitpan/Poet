@@ -1,6 +1,6 @@
 package Poet::Server;
 BEGIN {
-  $Poet::Server::VERSION = '0.03';
+  $Poet::Server::VERSION = '0.04';
 }
 use Poet qw($conf $env);
 use Method::Signatures::Simple;
@@ -46,24 +46,3 @@ method load_startup_modules () {
 }
 
 1;
-
-__END__
-=pod
-
-=head1 SEE ALSO
-
-L<Poet|Poet>
-
-=head1 AUTHOR
-
-Jonathan Swartz <swartz@pobox.com>
-
-=head1 COPYRIGHT AND LICENSE
-
-This software is copyright (c) 2012 by Jonathan Swartz.
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
-
-=cut
-

@@ -16,7 +16,13 @@
    "no_index" : {
       "directory" : [
          "lib/Poet/t",
-         "lib/Poet/Test"
+         "lib/Poet/Test",
+         "lib/Poet/App.pm",
+         "lib/Poet/App",
+         "lib/Poet/Mason/Plugin.pm",
+         "lib/Poet/Mason/Plugin",
+         "lib/Poet/Types.pm",
+         "lib/Poet/Util.pm"
       ]
    },
    "prereqs" : {
@@ -61,8 +67,7 @@
       },
       "test" : {
          "requires" : {
-            "Test::Class" : 0,
-            "Test::Most" : 0,
+            "Test::Class::Most" : 0,
             "Test::WWW::Mechanize::PSGI" : 0
          }
       }
@@ -79,6 +84,6 @@
          "web" : "https://github.com/jonswar/perl-poet"
       }
    },
-   "version" : "0.03"
+   "version" : "0.04"
 }
 

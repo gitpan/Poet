@@ -1,25 +1,23 @@
 package Poet::t::PSGIHandler;
 BEGIN {
-  $Poet::t::PSGIHandler::VERSION = '0.03';
+  $Poet::t::PSGIHandler::VERSION = '0.04';
 }
-use Poet::Test::Util;
+use Test::Class::Most parent => 'Poet::Test::Class';
 use Capture::Tiny qw();
 use File::Basename;
 use File::Path;
 use Guard;
-use Poet::Util qw(trim write_file);
-use Test::Most;
+use Poet::Tools qw(trim write_file);
 use IPC::System::Simple qw(run);
-use strict;
-use warnings;
-use base qw(Test::Class);
 
 my $env =
-  initialize_temp_env( conf => { layer => 'production', 'foo.bar' => 5 } );
+  __PACKAGE__->initialize_temp_env(
+    conf => { layer => 'production', 'foo.bar' => 5 } );
 unlink( glob( $env->comps_path("*.mc") ) );
 
 sub mech {
-    my $mech = build_test_mech($env);
+    my $self = shift;
+    my $mech = $self->SUPER::mech( env => $env );
     @{ $mech->requests_redirectable } = ();
     return $mech;
 }
@@ -256,24 +254,3 @@ root_dir: $expected_root_dir
 }
 
 1;
-
-__END__
-=pod
-
-=head1 SEE ALSO
-
-L<Poet|Poet>
-
-=head1 AUTHOR
-
-Jonathan Swartz <swartz@pobox.com>
-
-=head1 COPYRIGHT AND LICENSE
-
-This software is copyright (c) 2012 by Jonathan Swartz.
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
-
-=cut
-
