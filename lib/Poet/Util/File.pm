@@ -1,6 +1,6 @@
 package Poet::Util::File;
 BEGIN {
-  $Poet::Util::File::VERSION = '0.04';
+  $Poet::Util::File::VERSION = '0.05';
 }
 use File::Basename qw(basename dirname);
 use File::Path qw(make_path remove_tree);

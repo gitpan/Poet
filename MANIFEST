@@ -53,8 +53,10 @@ share/generate.skel/DOT_poet_root
 share/generate.skel/bin/app.psgi
 share/generate.skel/bin/get.pl
 share/generate.skel/bin/run.pl
+share/generate.skel/bin/tmp/EMPTY
 share/generate.skel/comps/Base.mc
 share/generate.skel/comps/index.mc
+share/generate.skel/comps/tmp/EMPTY
 share/generate.skel/conf/global.cfg
 share/generate.skel/conf/layer/development.cfg
 share/generate.skel/conf/layer/production.cfg

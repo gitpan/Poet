@@ -1,6 +1,6 @@
 package Poet::t::PSGIHandler;
 BEGIN {
-  $Poet::t::PSGIHandler::VERSION = '0.04';
+  $Poet::t::PSGIHandler::VERSION = '0.05';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
 use Capture::Tiny qw();
@@ -10,10 +10,18 @@ use Guard;
 use Poet::Tools qw(trim write_file);
 use IPC::System::Simple qw(run);
 
-my $env =
-  __PACKAGE__->initialize_temp_env(
-    conf => { layer => 'production', 'foo.bar' => 5 } );
+my $env = __PACKAGE__->initialize_temp_env(
+    conf => {
+        layer                 => 'production',
+        'foo.bar'             => 5,
+        'server.load_modules' => ['TestApp::Foo']
+    }
+);
 unlink( glob( $env->comps_path("*.mc") ) );
+write_file(
+    $env->lib_path("TestApp/Foo.pm"),
+    "package TestApp::Foo;\nsub bar {}\n1;\n"
+);
 
 sub mech {
     my $self = shift;
@@ -250,6 +258,16 @@ root_dir: <% $m->cache->root_dir %>
 chi_root_class: Poet::Cache
 root_dir: $expected_root_dir
 ",
+    );
+}
+
+sub test_misc : Tests {
+    my $self = shift;
+    $self->try_psgi_comp(
+        path => '/hi.mc',
+        src =>
+          'TestApp::Foo = <% TestApp::Foo->can("bar") ? "loaded" : "not loaded" %>',
+        expect_content => 'TestApp::Foo = loaded',
     );
 }
 

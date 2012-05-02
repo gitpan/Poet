@@ -1,6 +1,6 @@
 package Poet::t::Script;
 BEGIN {
-  $Poet::t::Script::VERSION = '0.04';
+  $Poet::t::Script::VERSION = '0.05';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
 use Capture::Tiny qw(capture);
@@ -8,7 +8,7 @@ use Cwd qw(realpath);
 use File::Basename;
 use File::Path;
 use YAML::XS;
-use Poet::Tools qw(tempdir_simple write_file);
+use Poet::Tools qw(perl_executable tempdir_simple write_file);
 
 my $script_template;
 
@@ -22,7 +22,8 @@ sub test_script : Tests {
     my $script = "$root_dir/bin/foo/bar.pl";
     mkpath( dirname($script), 0, 0775 );
     my $poet_lib_dir = realpath("lib");
-    write_file( $script, sprintf( $script_template, $poet_lib_dir ) );
+    write_file( $script,
+        sprintf( $script_template, perl_executable(), $poet_lib_dir ) );
     chmod( 0775, $script );
     my ( $stdout, $stderr ) = capture { system($script) };
     ok( !$stderr, "no stderr" . ( defined($stderr) ? " - $stderr" : "" ) );
@@ -31,7 +32,7 @@ sub test_script : Tests {
     is_deeply( $result, [ $root_dir, "$root_dir/lib", "$root_dir/lib", 42 ] );
 }
 
-$script_template = '#!/usr/bin/env perl
+$script_template = '#!%s
 use lib qw(%s);
 use Poet::Script qw($conf $env);
 use YAML::XS;

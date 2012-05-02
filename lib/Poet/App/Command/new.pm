@@ -1,6 +1,6 @@
 package Poet::App::Command::new;
 BEGIN {
-  $Poet::App::Command::new::VERSION = '0.04';
+  $Poet::App::Command::new::VERSION = '0.05';
 }
 use Poet::Moose;
 use Poet::Types;
@@ -30,11 +30,6 @@ method abstract ()    { "Create a new Poet installation" }
 method description () { $description }
 method usage_desc ()  { "poet new [-d dir] [-q] <AppName>" }
 
-method BUILD ($args) {
-    $self->{app_name} = ucfirst( $args->{app_name} );
-    $self->{app_name} =~ s/_([a-z])/"_" . uc($1)/ge;
-}
-
 method _build_dir () {
     return $self->app_name_to_dir( $self->app_name );
 }
@@ -53,7 +48,10 @@ method app_name_to_dir ($app_name) {
 
 method execute ($opt, $args) {
     $self->usage_error("takes one argument (app name)") unless @$args == 1;
-    $self->app_name( $args->[0] );
+
+    my $app_name = ucfirst( $args->[0] );
+    $app_name =~ s/_([a-z])/uc($1)/ge;
+    $self->app_name($app_name);
 
     require Poet::Environment::Generator;
     Poet::Environment::Generator->generate_environment_directory(

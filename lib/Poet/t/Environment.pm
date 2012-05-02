@@ -1,6 +1,6 @@
 package Poet::t::Environment;
 BEGIN {
-  $Poet::t::Environment::VERSION = '0.04';
+  $Poet::t::Environment::VERSION = '0.05';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
 use Poet::Environment::Generator;

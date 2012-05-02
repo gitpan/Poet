@@ -1,6 +1,6 @@
 package Poet::Mason::Plugin::Compilation;
 BEGIN {
-  $Poet::Mason::Plugin::Compilation::VERSION = '0.04';
+  $Poet::Mason::Plugin::Compilation::VERSION = '0.05';
 }
 use Mason::PluginRole;
 

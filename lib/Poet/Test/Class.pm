@@ -1,6 +1,6 @@
 package Poet::Test::Class;
 BEGIN {
-  $Poet::Test::Class::VERSION = '0.04';
+  $Poet::Test::Class::VERSION = '0.05';
 }
 use Method::Signatures::Simple;
 use Carp;

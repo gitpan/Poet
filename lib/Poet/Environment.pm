@@ -1,6 +1,6 @@
 package Poet::Environment;
 BEGIN {
-  $Poet::Environment::VERSION = '0.04';
+  $Poet::Environment::VERSION = '0.05';
 }
 use Carp;
 use File::Basename;
@@ -52,6 +52,14 @@ method initialize_current_environment ($class: %params) {
             $current_env->root_dir() );
     }
     $current_env = $params{env} || $class->new(%params);
+    my $root_dir = $current_env->root_dir;
+
+    # Unshift lib dir onto @INC
+    #
+    my $lib_dir = "$root_dir/lib";
+    unless ( $INC[0] eq $lib_dir ) {
+        unshift( @INC, $lib_dir );
+    }
 
     # Initialize logging and caching
     #
