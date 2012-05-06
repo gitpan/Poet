@@ -1,6 +1,6 @@
 package Poet::Environment;
 BEGIN {
-  $Poet::Environment::VERSION = '0.06';
+  $Poet::Environment::VERSION = '0.07';
 }
 use Carp;
 use File::Basename;

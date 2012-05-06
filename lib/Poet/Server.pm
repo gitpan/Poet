@@ -1,6 +1,6 @@
 package Poet::Server;
 BEGIN {
-  $Poet::Server::VERSION = '0.06';
+  $Poet::Server::VERSION = '0.07';
 }
 use Poet qw($conf $env);
 use Method::Signatures::Simple;

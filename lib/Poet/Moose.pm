@@ -1,6 +1,6 @@
 package Poet::Moose;
 BEGIN {
-  $Poet::Moose::VERSION = '0.06';
+  $Poet::Moose::VERSION = '0.07';
 }
 use Moose                      ();
 use MooseX::HasDefaults::RO    ();
@@ -17,8 +17,8 @@ sub init_meta {
     my $for_class = $params{for_class};
     Method::Signatures::Simple->import( into => $for_class );
     Moose->init_meta(@_);
-    MooseX::StrictConstructor->init_meta(@_);
-    MooseX::HasDefaults::RO->init_meta(@_);
+    MooseX::StrictConstructor->import( { into => $for_class } );
+    MooseX::HasDefaults::RO->import( { into => $for_class } );
 }
 
 1;
