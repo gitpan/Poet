@@ -1,6 +1,6 @@
 package Poet::Mason;
 BEGIN {
-  $Poet::Mason::VERSION = '0.05';
+  $Poet::Mason::VERSION = '0.06';
 }
 use Poet qw($conf $env);
 use List::MoreUtils qw(uniq);

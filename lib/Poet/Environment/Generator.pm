@@ -1,6 +1,6 @@
 package Poet::Environment::Generator;
 BEGIN {
-  $Poet::Environment::Generator::VERSION = '0.05';
+  $Poet::Environment::Generator::VERSION = '0.06';
 }
 use Cwd qw(realpath);
 use File::Basename;

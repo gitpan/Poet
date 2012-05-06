@@ -37,10 +37,10 @@ my %WriteMakefileArgs = (
     'Guard' => '0',
     'JSON::XS' => '0',
     'Log::Any::Adapter' => '0',
-    'Mason' => '2.00',
+    'Mason' => '2.19',
     'Mason::Plugin::Cache' => '0',
     'Mason::Plugin::HTMLFilters' => '0',
-    'Mason::Plugin::RouterSimple' => '0',
+    'Mason::Plugin::RouterSimple' => '0.05',
     'Method::Signatures::Simple' => '1.02',
     'Moose' => '1.15',
     'MooseX::App::Cmd' => '0',
@@ -54,7 +54,7 @@ my %WriteMakefileArgs = (
     'URI::Escape' => '0',
     'YAML::XS' => '0'
   },
-  'VERSION' => '0.05',
+  'VERSION' => '0.06',
   'test' => {
     'TESTS' => 't/*.t'
   }

@@ -1,6 +1,6 @@
 package Poet;
 BEGIN {
-  $Poet::VERSION = '0.05';
+  $Poet::VERSION = '0.06';
 }
 use Poet::Environment;
 use Method::Signatures::Simple;
