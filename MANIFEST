@@ -103,4 +103,5 @@ t/PSGIHandler.t
 t/Script.t
 t/Util.t
 t/author-NoLog4perl.t
+t/author-NoLogAnyAdapterLog4perl.t
 t/author-Run.t

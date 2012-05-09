@@ -1,6 +1,6 @@
 package Poet::Mechanize;
 BEGIN {
-  $Poet::Mechanize::VERSION = '0.07';
+  $Poet::Mechanize::VERSION = '0.08';
 }
 use Poet::Environment;
 use Plack::Util;

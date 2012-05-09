@@ -1,6 +1,6 @@
 package Poet::Log;
 BEGIN {
-  $Poet::Log::VERSION = '0.07';
+  $Poet::Log::VERSION = '0.08';
 }
 use Poet qw($conf $env);
 use File::Spec::Functions qw(rel2abs);
@@ -16,7 +16,10 @@ method get_logger ($class: %params) {
 }
 
 method initialize_logging ($class:) {
-    if ( can_load('Log::Log4perl') ) {
+    if (   can_load('Log::Log4perl')
+        && can_load('Log::Any::Adapter')
+        && can_load('Log::Any::Adapter::Log4perl') )
+    {
         unless ( Log::Log4perl->initialized() ) {
             my $config_string = $class->generate_log4perl_config();
             Log::Log4perl->init( \$config_string );
@@ -27,7 +30,7 @@ method initialize_logging ($class:) {
         write_file(
             $env->logs_path("poet.log.ERROR"),
             sprintf(
-                "[%s] Could not load Log::Log4perl. Install it to enable logging, or modify logging for your application (see Poet::Manual::Subclassing).\n",
+                "[%s] Could not load Log::Log4perl or Log::Any::Adapter::Log4perl. Install them to enable logging, or modify logging for your application (see Poet::Manual::Subclassing).\n",
                 scalar(localtime) )
         );
     }

@@ -1,6 +1,6 @@
 package Poet::t::Log;
 BEGIN {
-  $Poet::t::Log::VERSION = '0.07';
+  $Poet::t::Log::VERSION = '0.08';
 }
 use JSON::XS;
 use Test::Class::Most parent => 'Poet::Test::Class';

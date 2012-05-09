@@ -1,6 +1,6 @@
 package Poet::Moose;
 BEGIN {
-  $Poet::Moose::VERSION = '0.07';
+  $Poet::Moose::VERSION = '0.08';
 }
 use Moose                      ();
 use MooseX::HasDefaults::RO    ();

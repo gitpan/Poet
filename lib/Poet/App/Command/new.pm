@@ -1,6 +1,6 @@
 package Poet::App::Command::new;
 BEGIN {
-  $Poet::App::Command::new::VERSION = '0.07';
+  $Poet::App::Command::new::VERSION = '0.08';
 }
 use Poet::Moose;
 use Poet::Types;

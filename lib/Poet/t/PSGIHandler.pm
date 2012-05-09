@@ -1,6 +1,6 @@
 package Poet::t::PSGIHandler;
 BEGIN {
-  $Poet::t::PSGIHandler::VERSION = '0.07';
+  $Poet::t::PSGIHandler::VERSION = '0.08';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
 use Capture::Tiny qw();

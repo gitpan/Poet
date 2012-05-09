@@ -2,6 +2,16 @@ Revision history for Poet
 
 ** denotes an incompatible change
 
+0.08  May 9, 2012
+
+* Fixes
+  - Handle Log::Any::Adapter::Log4perl being missing as well
+  - Use #!/usr/bin/perl for poet, MakeMaker will adjust on install
+  - Handle .svn and .git in share/generate.skel
+
+* Documentation
+  - Fix blog article date/time issue in tutorial - Pat McNamee
+
 0.07  May 6, 2012
 
 * Fixes

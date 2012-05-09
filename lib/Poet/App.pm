@@ -1,6 +1,6 @@
 package Poet::App;
 BEGIN {
-  $Poet::App::VERSION = '0.07';
+  $Poet::App::VERSION = '0.08';
 }
 use Moose;
 
