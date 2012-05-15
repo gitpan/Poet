@@ -1,9 +1,9 @@
 package Poet::t::Environment;
 BEGIN {
-  $Poet::t::Environment::VERSION = '0.08';
+  $Poet::t::Environment::VERSION = '0.09';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
-use File::Path qw(make_path);
+use File::Path qw(mkpath);
 use Poet::Tools qw(tempdir_simple write_file);
 use Poet::Environment::Generator;
 
@@ -36,8 +36,8 @@ sub test_dot_files_in_share_dir : Tests {
     File::Copy::Recursive::rcopy( $share_dir, $temp_dir ) or die $!;
     my $gen_dir = "$temp_dir/generate.skel";
     my @paths = ( "$gen_dir/extra", "$gen_dir/.git", "$gen_dir/bin/.svn" );
-    make_path( @paths, { mode => 0775 } );
     foreach my $path (@paths) {
+        mkpath( $path, 0, 0775 );
         write_file( "$path/hi.txt", "hi" );
     }
     my $env_dir = $self->temp_env_dir( share_dir => $temp_dir );

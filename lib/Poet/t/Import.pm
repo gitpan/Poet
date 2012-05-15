@@ -1,6 +1,6 @@
 package Poet::t::Import;
 BEGIN {
-  $Poet::t::Import::VERSION = '0.08';
+  $Poet::t::Import::VERSION = '0.09';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
 
@@ -19,7 +19,7 @@ sub test_import_vars : Tests {
     {
         package TestImportVars;
 BEGIN {
-  $TestImportVars::VERSION = '0.08';
+  $TestImportVars::VERSION = '0.09';
 }
         BEGIN { $importer->export_to_level( 0, qw($cache $conf $env) ) }
         use Test::Most;
@@ -33,7 +33,7 @@ sub test_import_methods : Tests {
     {
         package TestImportMethods1;
 BEGIN {
-  $TestImportMethods1::VERSION = '0.08';
+  $TestImportMethods1::VERSION = '0.09';
 }
         BEGIN { $importer->export_to_level(0) }
         use Test::Most;
@@ -43,18 +43,18 @@ BEGIN {
     {
         package TestImportMethods2;
 BEGIN {
-  $TestImportMethods2::VERSION = '0.08';
+  $TestImportMethods2::VERSION = '0.09';
 }
         BEGIN { $importer->export_to_level( 0, qw(:file) ) }
         use Test::Most;
-        foreach my $function (qw(dp basename)) {
+        foreach my $function (qw(dp basename mkpath rmtree)) {
             ok( TestImportMethods2->can($function), "yes $function" );
         }
     }
     {
         package TestImportMethods3;
 BEGIN {
-  $TestImportMethods3::VERSION = '0.08';
+  $TestImportMethods3::VERSION = '0.09';
 }
         BEGIN { $importer->export_to_level( 0, qw(:web) ) }
         use Test::Most;

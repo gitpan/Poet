@@ -1,6 +1,6 @@
 package Poet::Plack::Request;
 BEGIN {
-  $Poet::Plack::Request::VERSION = '0.08';
+  $Poet::Plack::Request::VERSION = '0.09';
 }
 use Poet::Moose;
 extends 'Plack::Request';

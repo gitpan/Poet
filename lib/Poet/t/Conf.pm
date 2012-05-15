@@ -1,6 +1,6 @@
 package Poet::t::Conf;
 BEGIN {
-  $Poet::t::Conf::VERSION = '0.08';
+  $Poet::t::Conf::VERSION = '0.09';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
 
@@ -191,6 +191,22 @@ sub test_layer_required : Tests {
         qr/must specify layer/,
         'no layer'
     );
+}
+
+sub test_substitutions : Tests {
+    my $self = shift;
+    my $env  = $self->temp_env(
+        conf => {
+            layer => 'development',
+            'a.b' => 'bar',
+            'c'   => '/foo/${a.b}/baz',
+            'd'   => '/foo/${huh}/baz'
+        }
+    );
+    my $conf = $env->conf();
+    is( $conf->get('c'), '/foo/bar/baz', 'substitution' );
+    throws_ok { $conf->get('d') } qr/could not get conf for 'huh'/,
+      'bad substitution';
 }
 
 1;

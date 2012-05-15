@@ -1,6 +1,6 @@
 package Poet::t::Script;
 BEGIN {
-  $Poet::t::Script::VERSION = '0.08';
+  $Poet::t::Script::VERSION = '0.09';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
 use Capture::Tiny qw(capture);

@@ -2,7 +2,7 @@
 #
 package Poet::Tools;
 BEGIN {
-  $Poet::Tools::VERSION = '0.08';
+  $Poet::Tools::VERSION = '0.09';
 }
 use Carp;
 use Class::MOP;
