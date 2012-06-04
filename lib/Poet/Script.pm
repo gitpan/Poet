@@ -1,6 +1,6 @@
 package Poet::Script;
 BEGIN {
-  $Poet::Script::VERSION = '0.09';
+  $Poet::Script::VERSION = '0.10';
 }
 use Cwd qw(realpath);
 use File::Basename;

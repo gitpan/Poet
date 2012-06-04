@@ -1,6 +1,6 @@
 package Poet::Cache;
 BEGIN {
-  $Poet::Cache::VERSION = '0.09';
+  $Poet::Cache::VERSION = '0.10';
 }
 use Poet qw($conf $env);
 use Method::Signatures::Simple;

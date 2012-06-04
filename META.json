@@ -40,6 +40,7 @@
          "requires" : {
             "CHI" : "0.52",
             "Capture::Tiny" : 0,
+            "Data::Rmap" : "0.6",
             "File::ShareDir" : 0,
             "File::ShareDir::Install" : 0,
             "File::Slurp" : 0,
@@ -51,12 +52,14 @@
             "Mason::Plugin::Cache" : 0,
             "Mason::Plugin::HTMLFilters" : 0,
             "Mason::Plugin::RouterSimple" : "0.05",
+            "MasonX::ProcessDir" : "0.02",
             "Method::Signatures::Simple" : "1.02",
             "Moose" : "1.15",
             "MooseX::App::Cmd" : 0,
             "MooseX::HasDefaults::RO" : 0,
             "MooseX::StrictConstructor" : 0,
             "Plack" : 0,
+            "Plack::Middleware::Debug" : 0,
             "Plack::Middleware::Session" : 0,
             "Plack::Session::Store::Cache" : 0,
             "Try::Tiny" : 0,
@@ -84,6 +87,6 @@
          "web" : "https://github.com/jonswar/perl-poet"
       }
    },
-   "version" : "0.09"
+   "version" : "0.10"
 }
 

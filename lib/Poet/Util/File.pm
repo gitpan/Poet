@@ -1,6 +1,6 @@
 package Poet::Util::File;
 BEGIN {
-  $Poet::Util::File::VERSION = '0.09';
+  $Poet::Util::File::VERSION = '0.10';
 }
 use File::Basename qw(basename dirname);
 use File::Path qw();

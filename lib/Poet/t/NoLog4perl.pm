@@ -2,7 +2,7 @@
 #
 package Poet::t::NoLog4perl;
 BEGIN {
-  $Poet::t::NoLog4perl::VERSION = '0.09';
+  $Poet::t::NoLog4perl::VERSION = '0.10';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
 use Module::Mask;

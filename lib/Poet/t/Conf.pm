@@ -1,7 +1,9 @@
 package Poet::t::Conf;
 BEGIN {
-  $Poet::t::Conf::VERSION = '0.09';
+  $Poet::t::Conf::VERSION = '0.10';
 }
+use Poet::Tools qw(read_file tempdir_simple write_file);
+use IPC::System::Simple qw(run);
 use Test::Class::Most parent => 'Poet::Test::Class';
 
 require Poet;
@@ -193,20 +195,75 @@ sub test_layer_required : Tests {
     );
 }
 
-sub test_substitutions : Tests {
+sub test_interpolation : Tests {
     my $self = shift;
     my $env  = $self->temp_env(
         conf => {
-            layer => 'development',
-            'a.b' => 'bar',
-            'c'   => '/foo/${a.b}/baz',
-            'd'   => '/foo/${huh}/baz'
+            layer  => 'development',
+            'a.b'  => 'bar',
+            'c'    => '/foo/${a.b}/baz',
+            'd'    => '/foo/${huh}/baz',
+            'deep' => { 'e' => 5, 'f' => [ '${c}', ['${a.b}'] ] }
         }
     );
     my $conf = $env->conf();
     is( $conf->get('c'), '/foo/bar/baz', 'substitution' );
     throws_ok { $conf->get('d') } qr/could not get conf for 'huh'/,
       'bad substitution';
+    cmp_deeply(
+        $conf->get('deep'),
+        {
+            e => 5,
+            f => [ '/foo/bar/baz', ['bar'] ]
+        },
+        'deep'
+    );
+
+}
+
+sub test_dynamic_conf : Tests {
+    my $self = shift;
+    my $env  = $self->temp_env();
+    write_file( $env->conf_path("dynamic/foo.mc"), "<% 2+2 %>" );
+    ok(
+        !-d $env->data_path("conf/dynamic"),
+        "data/conf/dynamic does not exist"
+    );
+    run( $env->conf_path("dynamic/gen.pl") );
+    ok( -d $env->data_path("conf/dynamic"),     "data/conf/dynamic exists" );
+    ok( -f $env->data_path("conf/dynamic/foo"), "conf/dynamic/foo exists" );
+    is( read_file( $env->data_path("conf/dynamic/foo") ),
+        4, "foo has correct content" );
+    ok(
+        !-f $env->data_path("conf/dynamic/gen.pl"),
+        "conf/dynamic/gen.pl does not exist"
+    );
+}
+
+sub test_get_secure : Tests {
+    my $self        = shift;
+    my $tempdir     = tempdir_simple('poet-conf-XXXX');
+    my $secure_file = "$tempdir/supersecret.cfg";
+    write_file( $secure_file, "foo: 7\nbar: 8\nbaz: 9\n" );
+    my $env = $self->temp_env(
+        conf_files => {
+            'local.cfg' => {
+                layer                   => 'development',
+                'foo'                   => 0,
+                'conf.secure_conf_file' => $secure_file
+            }
+        }
+    );
+    my $conf = $env->conf;
+    my $lex = $conf->set_local( { bar => 4 } );
+
+    is( $conf->get_secure('foo'),    0,     "foo=0" );
+    is( $conf->get_secure('bar'),    4,     "bar=4" );
+    is( $conf->get_secure('baz'),    9,     "baz=9" );
+    is( $conf->get_secure('blargh'), undef, "blargh=undef" );
+
+    is( $conf->get('baz'), undef, "baz=undef" );
+    ok( ( !grep { /baz/ } $conf->get_keys() ), "no baz in keys" );
 }
 
 1;

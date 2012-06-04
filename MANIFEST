@@ -76,6 +76,7 @@ share/generate.skel/bin/tmp/EMPTY
 share/generate.skel/comps/Base.mc
 share/generate.skel/comps/index.mc
 share/generate.skel/comps/tmp/EMPTY
+share/generate.skel/conf/dynamic/gen.pl
 share/generate.skel/conf/global.cfg
 share/generate.skel/conf/layer/development.cfg
 share/generate.skel/conf/layer/production.cfg

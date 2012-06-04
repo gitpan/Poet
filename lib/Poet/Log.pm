@@ -1,9 +1,11 @@
 package Poet::Log;
 BEGIN {
-  $Poet::Log::VERSION = '0.09';
+  $Poet::Log::VERSION = '0.10';
 }
 use Poet qw($conf $env);
 use File::Spec::Functions qw(rel2abs);
+use File::Basename qw(dirname);
+use File::Path qw(mkpath);
 use Log::Any::Adapter;
 use Method::Signatures::Simple;
 use Poet::Tools qw(can_load read_file write_file);
@@ -64,6 +66,7 @@ method generate_log4perl_config ($class:) {
         else {
             $set->{appender_class} = "Log::Log4perl::Appender::File";
             $set->{filename} = rel2abs( $set->{output}, $env->logs_dir );
+            mkpath( dirname( $set->{filename} ), 0, 0775 );
         }
     }
     return join(

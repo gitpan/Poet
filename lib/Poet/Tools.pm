@@ -2,7 +2,7 @@
 #
 package Poet::Tools;
 BEGIN {
-  $Poet::Tools::VERSION = '0.09';
+  $Poet::Tools::VERSION = '0.10';
 }
 use Carp;
 use Class::MOP;
@@ -123,7 +123,7 @@ sub read_file {
 sub tempdir_simple {
     my ($template) = @_;
 
-    return tempdir( $template, TMPDIR => 1, CLEANUP => 0 );
+    return tempdir( $template, TMPDIR => 1, CLEANUP => 1 );
 }
 
 sub trim {

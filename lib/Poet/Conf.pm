@@ -1,9 +1,10 @@
 package Poet::Conf;
 BEGIN {
-  $Poet::Conf::VERSION = '0.09';
+  $Poet::Conf::VERSION = '0.10';
 }
 use Carp;
 use Cwd qw(realpath);
+use Data::Rmap qw(rmap_scalar);
 use File::Basename;
 use File::Slurp qw(read_file);
 use File::Spec::Functions qw(catfile);
@@ -20,6 +21,7 @@ has 'data'           => ( init_arg => undef );
 has 'is_development' => ( init_arg => undef, lazy_build => 1 );
 has 'is_live'        => ( init_arg => undef, lazy_build => 1 );
 has 'layer'          => ( init_arg => undef, lazy_build => 1 );
+has 'root_dir'       => ( required => 1 );
 
 our %get_cache;
 
@@ -28,7 +30,7 @@ method BUILD () {
 }
 
 method initial_conf_data () {
-    return ( root => realpath( dirname( $self->conf_dir ) ) );
+    return ( root_dir => $self->root_dir, root => $self->root_dir );
 }
 
 method read_conf_data () {
@@ -165,6 +167,7 @@ method _flush_get_cache () {
 }
 
 method get ($key, $default) {
+    croak "key required" if !defined($key);
     return $get_cache{$key} if exists( $get_cache{$key} );
 
     my $orig_key = $key;
@@ -173,15 +176,7 @@ method get ($key, $default) {
         return $self->_get_dotted_key( $key, $default );
     }
     my $value = $self->data->{$key};
-    if ( defined($value) ) {
-        while ( $value =~ /(\$ \{ ([\w\.\-]+) \} )/x ) {
-            my $var_decl  = $1;
-            my $var_key   = $2;
-            my $var_value = $self->get_or_die($var_key);
-            $var_value = '' if !defined($var_value);
-            $value =~ s/\Q$var_decl\E/$var_value/;
-        }
-    }
+    rmap_scalar { $_ = $self->interpolate_value($_) if defined && !ref } $value;
     $get_cache{$key} = $value;
     return defined($value) ? $value : $default;
 }
@@ -192,12 +187,23 @@ method _get_dotted_key ($key, $default) {
     return defined($value) ? $value : $default;
 }
 
+method interpolate_value ($value) {
+    while ( $value =~ /(\$ \{ ([\w\.\-]+) \} )/x ) {
+        my $var_decl  = $1;
+        my $var_key   = $2;
+        my $var_value = $self->get_or_die($var_key);
+        $var_value = '' if !defined($var_value);
+        $value =~ s/\Q$var_decl\E/$var_value/;
+    }
+    return $value;
+}
+
 method get_or_die ($key) {
     if ( defined( my $value = $self->get($key) ) ) {
         return $value;
     }
     else {
-        die "could not get conf for '$key'";
+        croak "could not get conf for '$key'";
     }
 }
 
@@ -258,7 +264,7 @@ method set_local ($pairs) {
     if ( !defined(wantarray) ) {
         warn "result of set_local must be assigned!";
     }
-    die "set_local expects hashref" unless ref($pairs) eq 'HASH';
+    croak "set_local expects hashref" unless ref($pairs) eq 'HASH';
 
     # Make a deep copy of current data, then merge in the new pairs
     #
@@ -270,6 +276,39 @@ method set_local ($pairs) {
     #
     my $guard = guard { $self->{data} = $orig_data; $self->conf_has_changed() };
     return $guard;
+}
+
+{
+    my $secure_conf;
+
+    method get_secure($key) {
+        die "key required"
+          unless defined($key);
+        if ( defined( my $value = $self->get($key) ) ) {
+            return $value;
+        }
+        $secure_conf ||= YAML::XS::LoadFile(
+            $self->get(
+                'conf.secure_conf_file' => $self->conf_dir . "/secure.cfg"
+            )
+        );
+          return $secure_conf->{$key};
+      }
+}
+
+method generate_dynamic_conf () {
+    require MasonX::ProcessDir;
+    my $env        = Poet::Environment->current_env;
+    my $source_dir = $self->conf_dir . "/dynamic";
+    my $dest_dir   = $env->data_path("conf/dynamic");
+    my $pd         = MasonX::ProcessDir->new(
+        source_dir    => $source_dir,
+        dest_dir      => $dest_dir,
+        ignore_files  => sub { $_[0] =~ /Base\.|\.mi$|gen\.pl|README/ },
+        mason_options => {},
+        @_
+    );
+    $pd->process_dir();
 }
 
 method get_keys () {
@@ -429,13 +468,13 @@ Conf entries can refer to other entries via the syntax C<${key}>. For example:
 
 The key must exist or a fatal error will occur.
 
-There is a single built-in entry, C<root>, containing the root directory of the
-environment that you can use in other entries, e.g.
+There is a single built-in entry, C<root_dir>, containing the root directory of
+the environment that you can use in other entries, e.g.
 
    cache:
       defaults:
          driver: File
-         root_dir: ${root}/data/cache
+         root_dir: ${root_dir}/data/cache
 
 =head2 Dot notation for hash access
 
@@ -547,6 +586,19 @@ Get I<key> from configuration. Return 1 if the value represents true ("1", "t",
 matches. Throws an error if there is a value that is a reference or does not
 match one of the valid options.
 
+=item get_secure (key)
+
+    my $password = $conf->get_secure('secret_password');
+
+Get I<key> from configuration as normal, but if it doesn't exist, then look for
+it in a separate non-version-controlled secure config file. Useful for
+passwords, encryption keys, etc. that might be ok in normal config on
+development, but ought to be secure on production.
+
+The location of the secure config file is determined by config entry
+conf.secure_conf_file; it defaults to C<conf/secure.cfg>. The file is in plain
+YAML format, with no interpolation or dot notation.
+
 =back
 
 =head2 Other methods
@@ -594,6 +646,20 @@ when $lex goes out of scope.
 This is intended for specialized use in unit tests and development tools, NOT
 for production code. Setting and resetting of configuration values will make it
 much more difficult to read and debug code!
+
+=item generate_dynamic_config
+
+    $conf->generate_dynamic_config();
+
+This method can be used to dynamically generate configuration files for
+external software (e.g. Apache, nginx, logrotate). It uses
+L<MasonX::ProcessDir|MasonX::ProcessDir> to process Mason templates in
+C<conf/dynamic> and generate destination files in C<data/conf/dynamic>.
+
+For example, if C<conf/dynamic/httpd.conf.mc> contains an Apache configuration
+file with Mason dynamic elements, this method will generate a static
+configuration file in C<data/conf/dynamic/httpd.conf.mc>, which you can then
+feed directly into Apache.
 
 =back
 

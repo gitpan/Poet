@@ -1,6 +1,6 @@
 package Poet::Server;
 BEGIN {
-  $Poet::Server::VERSION = '0.09';
+  $Poet::Server::VERSION = '0.10';
 }
 use Poet qw($conf $env);
 use Method::Signatures::Simple;
@@ -39,7 +39,10 @@ method get_plackup_options () {
     return @options;
 }
 
+my $loaded_startup_modules;
+
 method load_startup_modules () {
+    return if $loaded_startup_modules++;
     foreach my $module ( @{ $conf->get_list('server.load_modules') } ) {
         Class::MOP::load_class($module);
     }

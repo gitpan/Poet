@@ -1,9 +1,10 @@
 package Poet::Environment::Generator;
 BEGIN {
-  $Poet::Environment::Generator::VERSION = '0.09';
+  $Poet::Environment::Generator::VERSION = '0.10';
 }
 use Cwd qw(realpath);
 use File::Basename;
+use File::Find;
 use File::Path;
 use File::ShareDir;
 use File::Slurp qw(read_dir);
@@ -62,7 +63,7 @@ method generate_environment_directory ($class: %params) {
     rename( "$root_dir/lib/MyApp", "$root_dir/lib/$app_name" )
       unless $app_name eq 'MyApp';
 
-    chmod( 0775, glob("$root_dir/bin/*.pl") );
+    find( sub { chmod( 0775, $_ ) if /\.pl$/ }, $root_dir );
     $msg->("\nNow run '$root_dir/bin/run.pl' to start your server.");
 
     return $root_dir;

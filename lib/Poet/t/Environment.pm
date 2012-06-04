@@ -1,6 +1,6 @@
 package Poet::t::Environment;
 BEGIN {
-  $Poet::t::Environment::VERSION = '0.09';
+  $Poet::t::Environment::VERSION = '0.10';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
 use File::Path qw(mkpath);
@@ -18,12 +18,15 @@ sub test_environment : Tests {
         my $subdir_method = $subdir . "_dir";
         is( $env->$subdir_method, "$root_dir/$subdir", $subdir_method );
         ok( -d $env->$subdir_method, "$subdir exists" );
+        ok( -d $env->path($subdir),  "$subdir exists" );
     }
     is( $env->conf->layer, 'development', "layer" );
     foreach my $class (qw(Conf Log Mason)) {
         my $file = $env->lib_path("$app_name/$class.pm");
         ok( -f $file, "$file exists" );
     }
+    ok( -x $env->bin_path("run.pl"), "run.pl executable" );
+    ok( -x $env->bin_path("get.pl"), "get.pl executable" );
 }
 
 sub test_dot_files_in_share_dir : Tests {
