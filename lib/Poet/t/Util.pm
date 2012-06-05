@@ -1,13 +1,13 @@
 package Poet::t::Util;
 BEGIN {
-  $Poet::t::Util::VERSION = '0.10';
+  $Poet::t::Util::VERSION = '0.11';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
 use Poet::Tools qw(read_file);
 use Poet::Util::Debug qw(:all);
 use Capture::Tiny qw(capture_stderr);
 
-my $env =
+my $poet =
   __PACKAGE__->initialize_temp_env( conf => { layer => 'development' } );
 
 sub test_debug : Tests {
@@ -19,7 +19,7 @@ sub test_debug : Tests {
     like( dh($data), $expect, "dh" );
     like( capture_stderr { dp($data) }, $expect, "dp" );
 
-    my $console_log = $env->logs_path("console.log");
+    my $console_log = $poet->logs_path("console.log");
     ok( !-f $console_log, "no console log" );
     dc($data);
     like( read_file($console_log), qr|$expect|, "dc" );

@@ -2,7 +2,7 @@
 #
 package Poet::t::NoLog4perl;
 BEGIN {
-  $Poet::t::NoLog4perl::VERSION = '0.10';
+  $Poet::t::NoLog4perl::VERSION = '0.11';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
 use Module::Mask;
@@ -12,8 +12,8 @@ use warnings;
 
 sub test_no_log4perl : Tests {
     my $self       = shift;
-    my $env        = $self->initialize_temp_env();
-    my $error_file = $env->logs_path("poet.log.ERROR");
+    my $poet       = $self->initialize_temp_env();
+    my $error_file = $poet->logs_path("poet.log.ERROR");
     ok( -f $error_file, "$error_file exists" );
     like( read_file($error_file), qr/Could not load Log::Log4perl/ );
 }

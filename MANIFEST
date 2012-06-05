@@ -5,6 +5,7 @@ MANIFEST
 META.json
 META.yml
 Makefile.PL
+TAGS
 bin/poet
 eg/blog/README
 eg/blog/bin/app.psgi
@@ -68,6 +69,7 @@ lib/Poet/t/PSGIHandler.pm
 lib/Poet/t/Run.pm
 lib/Poet/t/Script.pm
 lib/Poet/t/Util.pm
+lib/TAGS
 share/generate.skel/DOT_poet_root
 share/generate.skel/bin/app.psgi
 share/generate.skel/bin/get.pl

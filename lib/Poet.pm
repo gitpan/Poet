@@ -1,6 +1,6 @@
 package Poet;
 BEGIN {
-  $Poet::VERSION = '0.10';
+  $Poet::VERSION = '0.11';
 }
 use Poet::Environment;
 use Method::Signatures::Simple;
@@ -8,9 +8,9 @@ use strict;
 use warnings;
 
 method import ($class:) {
-    my $env = Poet::Environment->current_env
+    my $poet = Poet::Environment->current_env
       or die "environment has not been initialized!";
-    $env->importer->export_to_level( 1, @_ );
+    $poet->importer->export_to_level( 1, @_ );
 }
 
 1;

@@ -156,7 +156,7 @@ sub test_log_config Poet::t::Log::test_log_config13,201
 
 t/PSGIHandler.pm,741
 package Poet::t::PSGIHandler;1,0
-my $env env14,261
+my $poet env14,261
 sub mech Poet::t::PSGIHandler::mech18,392
 sub add_comp Poet::t::PSGIHandler::add_comp24,506
 sub try_psgi_comp Poet::t::PSGIHandler::try_psgi_comp33,773
@@ -182,7 +182,7 @@ sub test_script Poet::t::Script::test_script18,326
 
 t/Util.pm,96
 package Poet::t::Util;1,0
-my $env env11,214
+my $poet env11,214
 sub test_debug Poet::t::Util::test_debug13,284
 
 Test/Util.pm,331
