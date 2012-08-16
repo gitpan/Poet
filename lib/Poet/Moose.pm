@@ -1,7 +1,7 @@
 package Poet::Moose;
 BEGIN {
-  $Poet::Moose::VERSION = '0.11';
-}
+  $Poet::Moose::VERSION = '0.12';
+}    ## no critic (Moose::RequireMakeImmutable)
 use Moose                      ();
 use MooseX::HasDefaults::RO    ();
 use MooseX::StrictConstructor  ();

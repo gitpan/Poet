@@ -1,16 +1,13 @@
 package Poet::Environment::Generator;
 BEGIN {
-  $Poet::Environment::Generator::VERSION = '0.11';
+  $Poet::Environment::Generator::VERSION = '0.12';
 }
 use Cwd qw(realpath);
-use File::Basename;
 use File::Find;
-use File::Path;
 use File::ShareDir;
-use File::Slurp qw(read_dir);
 use Mason;
 use Method::Signatures::Simple;
-use Poet::Tools qw(trim write_file);
+use Poet::Tools qw(basename dirname mkpath read_dir trim write_file);
 use strict;
 use warnings;
 
@@ -50,6 +47,7 @@ method generate_environment_directory ($class: %params) {
         my $output = trim( $interp->run($path)->output );
         ( my $dest = $path ) =~ s{/DOT_}{/.}g;
         $dest = $root_dir . $dest;
+        $dest =~ s|$root_dir/lib/MyApp|$root_dir/lib/$app_name|;
         mkpath( dirname($dest), 0, 0775 );
         if ( $path =~ /EMPTY$/ ) {
             $msg->( dirname($dest) );
@@ -59,9 +57,6 @@ method generate_environment_directory ($class: %params) {
             write_file( $dest, $output );
         }
     }
-
-    rename( "$root_dir/lib/MyApp", "$root_dir/lib/$app_name" )
-      unless $app_name eq 'MyApp';
 
     find( sub { chmod( 0775, $_ ) if /\.pl$/ }, $root_dir );
     $msg->("\nNow run '$root_dir/bin/run.pl' to start your server.");

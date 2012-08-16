@@ -1,17 +1,15 @@
 package Poet::Test::Class;
 BEGIN {
-  $Poet::Test::Class::VERSION = '0.11';
+  $Poet::Test::Class::VERSION = '0.12';
 }
 use Method::Signatures::Simple;
 use Carp;
 use Cwd qw(realpath);
-use File::Basename;
-use File::Path;
 use Plack::Util;
 use Poet::Environment::Generator;
 use Poet::Environment;
 use Poet::Mechanize;
-use Poet::Tools qw(tempdir_simple write_file);
+use Poet::Tools qw(basename dirname mkpath rmtree tempdir_simple write_file);
 use Test::Class::Most;
 use YAML::XS;
 use strict;

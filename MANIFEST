@@ -68,8 +68,9 @@ lib/Poet/t/NoLog4perl.pm
 lib/Poet/t/PSGIHandler.pm
 lib/Poet/t/Run.pm
 lib/Poet/t/Script.pm
+lib/Poet/t/Subclassing.pm
 lib/Poet/t/Util.pm
-lib/TAGS
+perlcriticrc
 share/generate.skel/DOT_poet_root
 share/generate.skel/bin/app.psgi
 share/generate.skel/bin/get.pl
@@ -104,7 +105,9 @@ t/Import.t
 t/Log.t
 t/PSGIHandler.t
 t/Script.t
+t/Subclassing.t
 t/Util.t
 t/author-NoLog4perl.t
 t/author-NoLogAnyAdapterLog4perl.t
 t/author-Run.t
+tidyall.ini

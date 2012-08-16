@@ -1,10 +1,8 @@
 package Poet::Environment;
 BEGIN {
-  $Poet::Environment::VERSION = '0.11';
+  $Poet::Environment::VERSION = '0.12';
 }
 use Carp;
-use File::Basename;
-use File::Path;
 use File::Slurp;
 use Poet::Moose;
 use Poet::Tools qw(can_load catdir);
@@ -52,14 +50,6 @@ method initialize_current_environment ($class: %params) {
             $current_env->root_dir() );
     }
     $current_env = $params{env} || $class->new(%params);
-    my $root_dir = $current_env->root_dir;
-
-    # Unshift lib dir onto @INC
-    #
-    my $lib_dir = "$root_dir/lib";
-    unless ( $INC[0] eq $lib_dir ) {
-        unshift( @INC, $lib_dir );
-    }
 
     # Initialize logging and caching
     #
@@ -75,6 +65,13 @@ method current_env ($class:) {
 
 method BUILD () {
     my $root_dir = $self->root_dir();
+
+    # Unshift lib dir onto @INC
+    #
+    my $lib_dir = "$root_dir/lib";
+    unless ( $INC[0] eq $lib_dir ) {
+        unshift( @INC, $lib_dir );
+    }
 
     # Initialize configuration
     #
@@ -249,7 +246,7 @@ You can also get it via
 
 =head1 CONFIGURING ENVIRONMENT SUBDIRECTORIES
 
-Any subdirectories other than conf_dir can be overriden in configuration. e.g.
+Any subdirectories other than conf_dir can be overridden in configuration. e.g.
 
     # Override bin_dir
     env.bin_dir: /some/other/bin/dir

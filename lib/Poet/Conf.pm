@@ -1,15 +1,14 @@
 package Poet::Conf;
 BEGIN {
-  $Poet::Conf::VERSION = '0.11';
+  $Poet::Conf::VERSION = '0.12';
 }
 use Carp;
 use Cwd qw(realpath);
 use Data::Rmap qw(rmap_scalar);
-use File::Basename;
-use File::Slurp qw(read_file);
 use File::Spec::Functions qw(catfile);
 use Guard;
 use Poet::Moose;
+use Poet::Tools qw(read_file);
 use Storable qw(dclone);
 use Try::Tiny;
 use YAML::XS;
@@ -278,22 +277,26 @@ method set_local ($pairs) {
     return $guard;
 }
 
-{
-    my $secure_conf;
+# Get key from secure conf, fallback to normal conf. Maintain separate
+# secure_conf hash for each Conf object (e.g. for testing).
+#
+my %secure_confs;
 
-    method get_secure($key) {
-        die "key required"
-          unless defined($key);
-        if ( defined( my $value = $self->get($key) ) ) {
-            return $value;
-        }
-        $secure_conf ||= YAML::XS::LoadFile(
-            $self->get(
-                'conf.secure_conf_file' => $self->conf_dir . "/secure.cfg"
-            )
-        );
-          return $secure_conf->{$key};
-      }
+method get_secure ($key) {
+    die "key required" unless defined($key);
+    return $self->_get_secure_conf->{$key} || $self->get($key);
+}
+
+method _get_secure_conf () {
+    if ( !$secure_confs{"$self"} ) {
+        my $secure_conf_file = $self->get(
+            'conf.secure_conf_file' => $self->conf_dir . "/secure.cfg" );
+        $secure_confs{"$self"} =
+          ( -f $secure_conf_file )
+          ? $self->read_conf_file($secure_conf_file)
+          : {};
+    }
+    return $secure_confs{"$self"};
 }
 
 method generate_dynamic_conf () {
@@ -502,8 +505,8 @@ and in local.cfg you have
 
     cache.defaults.depth: 2
 
-then only C<depth> will be overriden; the C<driver> and C<root_dir> will remain
-as they were set in C<global/cache.cfg>. If instead local.cfg had
+then only C<depth> will be overridden; the C<driver> and C<root_dir> will
+remain as they were set in C<global/cache.cfg>. If instead local.cfg had
 
    cache:
       defaults:
@@ -590,10 +593,10 @@ match one of the valid options.
 
     my $password = $conf->get_secure('secret_password');
 
-Get I<key> from configuration as normal, but if it doesn't exist, then look for
-it in a separate non-version-controlled secure config file. Useful for
-passwords, encryption keys, etc. that might be ok in normal config on
-development, but ought to be secure on production.
+Get I<key> from a separate, non-version-controlled, secure config file; if it
+cannot be found, then fallback to normal config. Useful for passwords,
+encryption keys, etc. that might be ok in normal config on development, but
+ought to be secure on production.
 
 The location of the secure config file is determined by config entry
 conf.secure_conf_file; it defaults to C<conf/secure.cfg>. The file is in plain

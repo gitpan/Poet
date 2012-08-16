@@ -1,10 +1,9 @@
 package Poet::t::Environment;
 BEGIN {
-  $Poet::t::Environment::VERSION = '0.11';
+  $Poet::t::Environment::VERSION = '0.12';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
-use File::Path qw(mkpath);
-use Poet::Tools qw(tempdir_simple write_file);
+use Poet::Tools qw(mkpath tempdir_simple write_file);
 use Poet::Environment::Generator;
 
 sub test_environment : Tests {

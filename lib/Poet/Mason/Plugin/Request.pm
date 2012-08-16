@@ -1,6 +1,6 @@
 package Poet::Mason::Plugin::Request;
 BEGIN {
-  $Poet::Mason::Plugin::Request::VERSION = '0.11';
+  $Poet::Mason::Plugin::Request::VERSION = '0.12';
 }
 use Mason::PluginRole;
 use Poet qw($conf $poet);

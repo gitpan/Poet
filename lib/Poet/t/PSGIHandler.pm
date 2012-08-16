@@ -1,13 +1,11 @@
 package Poet::t::PSGIHandler;
 BEGIN {
-  $Poet::t::PSGIHandler::VERSION = '0.11';
+  $Poet::t::PSGIHandler::VERSION = '0.12';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
 use Capture::Tiny qw();
-use File::Basename;
-use File::Path;
 use Guard;
-use Poet::Tools qw(trim write_file);
+use Poet::Tools qw(dirname mkpath trim write_file);
 
 my $poet = __PACKAGE__->initialize_temp_env(
     conf => {

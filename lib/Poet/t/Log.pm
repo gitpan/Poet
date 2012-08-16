@@ -1,9 +1,8 @@
 package Poet::t::Log;
 BEGIN {
-  $Poet::t::Log::VERSION = '0.11';
+  $Poet::t::Log::VERSION = '0.12';
 }
-use Poet::Tools qw(tempdir_simple);
-use File::Path qw(rmtree);
+use Poet::Tools qw(rmtree tempdir_simple);
 use JSON::XS;
 use Test::Class::Most parent => 'Poet::Test::Class';
 

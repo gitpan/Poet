@@ -1,10 +1,12 @@
 package Poet::Mechanize;
 BEGIN {
-  $Poet::Mechanize::VERSION = '0.11';
+  $Poet::Mechanize::VERSION = '0.12';
 }
 use Poet::Environment;
 use Plack::Util;
 use base qw(Test::WWW::Mechanize::PSGI);
+use strict;
+use warnings;
 
 sub new {
     my ( $class, %params ) = @_;

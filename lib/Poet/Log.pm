@@ -1,14 +1,12 @@
 package Poet::Log;
 BEGIN {
-  $Poet::Log::VERSION = '0.11';
+  $Poet::Log::VERSION = '0.12';
 }
 use Poet qw($conf $poet);
 use File::Spec::Functions qw(rel2abs);
-use File::Basename qw(dirname);
-use File::Path qw(mkpath);
 use Log::Any::Adapter;
 use Method::Signatures::Simple;
-use Poet::Tools qw(can_load read_file write_file);
+use Poet::Tools qw(can_load dirname mkpath read_file write_file);
 use strict;
 use warnings;
 
@@ -76,7 +74,7 @@ method generate_log4perl_config ($class:) {
             $class->_generate_lines( "log4perl.logger.$_",
                 $class->_flatten_class_name($_),
                 $classes{$_} )
-          } sort( keys(%classes) ),
+        } sort( keys(%classes) ),
     );
 }
 

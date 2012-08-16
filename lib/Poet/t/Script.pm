@@ -1,14 +1,12 @@
 package Poet::t::Script;
 BEGIN {
-  $Poet::t::Script::VERSION = '0.11';
+  $Poet::t::Script::VERSION = '0.12';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
 use Capture::Tiny qw(capture);
 use Cwd qw(realpath);
-use File::Basename;
-use File::Path;
 use YAML::XS;
-use Poet::Tools qw(perl_executable tempdir_simple write_file);
+use Poet::Tools qw(dirname mkpath perl_executable tempdir_simple write_file);
 
 my $script_template;
 

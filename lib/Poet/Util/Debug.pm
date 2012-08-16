@@ -1,6 +1,6 @@
 package Poet::Util::Debug;
 BEGIN {
-  $Poet::Util::Debug::VERSION = '0.11';
+  $Poet::Util::Debug::VERSION = '0.12';
 }
 use Carp qw(longmess);
 use Data::Dumper;
@@ -54,7 +54,7 @@ _define(
     sub {
         $console_log ||=
           Poet::Environment->current_env->logs_path("console.log");
-        open( my $fh, ">>$console_log" );
+        open( my $fh, ">>", $console_log );
         $fh->print( $_[0] );
     }
 );

@@ -1,6 +1,6 @@
 package Poet::t::Run;
 BEGIN {
-  $Poet::t::Run::VERSION = '0.11';
+  $Poet::t::Run::VERSION = '0.12';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
 use Poet::Tools qw(read_file);

@@ -1,6 +1,6 @@
 package Poet::Import;
 BEGIN {
-  $Poet::Import::VERSION = '0.11';
+  $Poet::Import::VERSION = '0.12';
 }
 use Carp;
 use Poet::Moose;
@@ -24,6 +24,8 @@ method _build_default_tags () {
 }
 
 method export_to_level ($level, @params) {
+    my ($caller) = caller($level);
+    $self->export_to_class($caller);
     foreach my $param (@params) {
         if ( substr( $param, 0, 1 ) eq '$' ) {
             $self->export_var_to_level( substr( $param, 1 ), $level + 1 );
@@ -35,6 +37,9 @@ method export_to_level ($level, @params) {
     foreach my $tag ( @{ $self->default_tags } ) {
         $self->export_tag_to_level( $tag, $level + 1 );
     }
+}
+
+method export_to_class ($class) {
 }
 
 method export_var_to_level ($var, $level) {
@@ -78,8 +83,7 @@ method provide_var_env ($caller) {
 }
 
 method provide_var_log ($caller) {
-    require Log::Any;
-    Log::Any->get_logger( category => $caller );
+    $self->env->app_class('Log')->get_logger( category => $caller );
 }
 
 method provide_var_poet ($caller) {
@@ -222,6 +226,25 @@ Now your scripts and libraries can do
 
     use Poet::Script qw(:hash);
     use Poet qw(:hash);
+
+=head2 Other exports
+
+To export other general things to the calling class, you can override
+C<export_to_class>, which takes the calling class as its argument. e.g.
+
+    package MyApp::Import;
+    use Poet::Moose;
+    extends 'Poet::Import';
+
+    before 'export_to_class' => sub {
+        my ($self, $class) = @_;
+        no strict 'refs';
+        %{$class . "::some_name"} = ...;
+    }
+
+=over
+
+=back
 
 =head1 SEE ALSO
 

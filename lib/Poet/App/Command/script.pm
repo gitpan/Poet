@@ -1,6 +1,6 @@
 package Poet::App::Command::script;
 BEGIN {
-  $Poet::App::Command::script::VERSION = '0.11';
+  $Poet::App::Command::script::VERSION = '0.12';
 }
 use File::Spec::Functions qw(rel2abs);
 use Poet::Tools qw(write_file);

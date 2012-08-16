@@ -1,6 +1,6 @@
 package Poet::t::App;
 BEGIN {
-  $Poet::t::App::VERSION = '0.11';
+  $Poet::t::App::VERSION = '0.12';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
 

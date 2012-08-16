@@ -39,7 +39,7 @@ my %WriteMakefileArgs = (
     'JSON::XS' => '0',
     'Log::Any::Adapter' => '0',
     'Mason' => '2.19',
-    'Mason::Plugin::Cache' => '0',
+    'Mason::Plugin::Cache' => '0.04',
     'Mason::Plugin::HTMLFilters' => '0',
     'Mason::Plugin::RouterSimple' => '0.05',
     'MasonX::ProcessDir' => '0.02',
@@ -57,7 +57,7 @@ my %WriteMakefileArgs = (
     'URI::Escape' => '0',
     'YAML::XS' => '0'
   },
-  'VERSION' => '0.11',
+  'VERSION' => '0.12',
   'test' => {
     'TESTS' => 't/*.t'
   }
