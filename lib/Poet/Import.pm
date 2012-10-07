@@ -1,6 +1,6 @@
 package Poet::Import;
 BEGIN {
-  $Poet::Import::VERSION = '0.12';
+  $Poet::Import::VERSION = '0.13';
 }
 use Carp;
 use Poet::Moose;
@@ -51,11 +51,8 @@ method export_var_to_level ($var, $level) {
         *{ $caller . "\::$var" } = \$value;
     }
     else {
-        croak sprintf(
-            "unknown import var '\$$var': valid import vars are %s",
-            join( ", ",
-                map { "'\$$_'" } grep { $_ ne 'env' } @{ $self->valid_vars } )
-        );
+        croak sprintf( "unknown import var '\$$var': valid import vars are %s",
+            join( ", ", map { "'\$$_'" } grep { $_ ne 'env' } @{ $self->valid_vars } ) );
     }
 }
 

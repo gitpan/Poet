@@ -1,6 +1,6 @@
 package Poet::Plack::Response;
 BEGIN {
-  $Poet::Plack::Response::VERSION = '0.12';
+  $Poet::Plack::Response::VERSION = '0.13';
 }
 use Poet::Moose;
 extends 'Plack::Response';

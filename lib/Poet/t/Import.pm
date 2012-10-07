@@ -1,6 +1,6 @@
 package Poet::t::Import;
 BEGIN {
-  $Poet::t::Import::VERSION = '0.12';
+  $Poet::t::Import::VERSION = '0.13';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
 
@@ -19,7 +19,7 @@ sub test_import_vars : Tests {
     {
         package TestImportVars;
 BEGIN {
-  $TestImportVars::VERSION = '0.12';
+  $TestImportVars::VERSION = '0.13';
 }
         BEGIN { $importer->export_to_level( 0, qw($cache $conf $env $poet) ) }
         use Test::Most;
@@ -35,7 +35,7 @@ sub test_import_bad_vars : Tests {
     {
         package TestImportVars2;
 BEGIN {
-  $TestImportVars2::VERSION = '0.12';
+  $TestImportVars2::VERSION = '0.13';
 }
         use Test::Most;
         throws_ok(
@@ -50,7 +50,7 @@ sub test_import_methods : Tests {
     {
         package TestImportMethods1;
 BEGIN {
-  $TestImportMethods1::VERSION = '0.12';
+  $TestImportMethods1::VERSION = '0.13';
 }
         BEGIN { $importer->export_to_level(0) }
         use Test::Most;
@@ -60,7 +60,7 @@ BEGIN {
     {
         package TestImportMethods2;
 BEGIN {
-  $TestImportMethods2::VERSION = '0.12';
+  $TestImportMethods2::VERSION = '0.13';
 }
         BEGIN { $importer->export_to_level( 0, qw(:file) ) }
         use Test::Most;
@@ -71,7 +71,7 @@ BEGIN {
     {
         package TestImportMethods3;
 BEGIN {
-  $TestImportMethods3::VERSION = '0.12';
+  $TestImportMethods3::VERSION = '0.13';
 }
         BEGIN { $importer->export_to_level( 0, qw(:web) ) }
         use Test::Most;

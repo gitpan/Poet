@@ -1,6 +1,6 @@
 package Poet::Util::Web;
 BEGIN {
-  $Poet::Util::Web::VERSION = '0.12';
+  $Poet::Util::Web::VERSION = '0.13';
 }
 use Data::Dumper;
 use URI;
@@ -12,8 +12,7 @@ use base qw(Exporter);
 our @EXPORT_OK = qw(html_escape js_escape make_uri uri_escape uri_unescape);
 our %EXPORT_TAGS = ( 'all' => \@EXPORT_OK );
 
-my %html_escape =
-  ( '&' => '&amp;', '>' => '&gt;', '<' => '&lt;', '"' => '&quot;' );
+my %html_escape = ( '&' => '&amp;', '>' => '&gt;', '<' => '&lt;', '"' => '&quot;' );
 my $html_escape = qr/([&<>"])/;
 
 # Stolen from Javascript::Value::Escape
@@ -31,8 +30,7 @@ my %js_escape = (
     "\x{2028}" => 'u2028',
     "\x{2029}" => 'u2029',
 );
-map { $js_escape{ pack( 'U', $_ ) } = sprintf( "u%04d", $_ ) }
-  ( 0x00 .. 0x1f, 0x7f );
+map { $js_escape{ pack( 'U', $_ ) } = sprintf( "u%04d", $_ ) } ( 0x00 .. 0x1f, 0x7f );
 
 sub html_escape {
     my $text = $_[0];
@@ -42,8 +40,7 @@ sub html_escape {
 
 sub js_escape {
     my $text = shift;
-    $text =~
-      s!([\\"'<>&=\-;\+\x00-\x1f\x7f]|\x{2028}|\x{2029})!\\$js_escape{$1}!g;
+    $text =~ s!([\\"'<>&=\-;\+\x00-\x1f\x7f]|\x{2028}|\x{2029})!\\$js_escape{$1}!g;
     return $text;
 }
 

@@ -1,6 +1,6 @@
 package Poet::Environment;
 BEGIN {
-  $Poet::Environment::VERSION = '0.12';
+  $Poet::Environment::VERSION = '0.13';
 }
 use Carp;
 use File::Slurp;
@@ -23,7 +23,7 @@ method app_class ($class_name) {
     return
         can_load($app_class_name) ? $app_class_name
       : can_load($env_class_name) ? $env_class_name
-      :   die "cannot load $app_class_name or $class_name";
+      :                             die "cannot load $app_class_name or $class_name";
 }
 
 method generate_subdir_methods ($class:) {
@@ -45,8 +45,7 @@ method generate_subdir_methods ($class:) {
 
 method initialize_current_environment ($class: %params) {
     if ( defined($current_env) ) {
-        die sprintf(
-            "initialize_current_environment called when current_env already set (%s)",
+        die sprintf( "initialize_current_environment called when current_env already set (%s)",
             $current_env->root_dir() );
     }
     $current_env = $params{env} || $class->new(%params);

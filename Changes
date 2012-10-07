@@ -2,6 +2,14 @@ Revision history for Poet
 
 ** denotes an incompatible change
 
+0.13  Oct 7, 2012
+
+* Improvements
+  - Add standard error pages and 500 error response for errors in live mode
+
+* Fixes
+  - Retain response object ($m->res) when creating subrequests via $m->go and $m->visit
+
 0.12  Aug 15, 2012
 
 * Fixes

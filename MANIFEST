@@ -95,6 +95,10 @@ share/generate.skel/lib/MyApp/Mason/Request.pm
 share/generate.skel/lib/MyApp/README
 share/generate.skel/logs/EMPTY
 share/generate.skel/static/css/style.css
+share/generate.skel/static/errors/401.html
+share/generate.skel/static/errors/403.html
+share/generate.skel/static/errors/404.html
+share/generate.skel/static/errors/500.html
 share/generate.skel/static/images/EMPTY
 share/generate.skel/static/js/EMPTY
 share/generate.skel/t/EMPTY
@@ -110,4 +114,3 @@ t/Util.t
 t/author-NoLog4perl.t
 t/author-NoLogAnyAdapterLog4perl.t
 t/author-Run.t
-tidyall.ini

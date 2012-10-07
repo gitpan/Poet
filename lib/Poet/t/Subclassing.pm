@@ -1,6 +1,6 @@
 package Poet::t::Subclassing;
 BEGIN {
-  $Poet::t::Subclassing::VERSION = '0.12';
+  $Poet::t::Subclassing::VERSION = '0.13';
 }
 use Poet::Tools qw(write_file);
 use Test::Class::Most parent => 'Poet::Test::Class';
@@ -43,7 +43,7 @@ sub test_subclassing : Tests {
     {
         package Foo;
 BEGIN {
-  $Foo::VERSION = '0.12';
+  $Foo::VERSION = '0.13';
 }
         Poet->import(qw($cache $conf $log $poet));
         use Test::More;

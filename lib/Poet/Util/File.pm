@@ -1,6 +1,6 @@
 package Poet::Util::File;
 BEGIN {
-  $Poet::Util::File::VERSION = '0.12';
+  $Poet::Util::File::VERSION = '0.13';
 }
 use File::Basename qw(basename dirname);
 use File::Path qw();
@@ -13,10 +13,9 @@ use base qw(Exporter);
 
 File::Path->import( @File::Path::EXPORT, @File::Path::EXPORT_OK );
 
-our @EXPORT_OK = uniq(
-    qw(abs2rel basename canonpath catdir catfile dirname read_file rel2abs write_file),
-    @File::Path::EXPORT, @File::Path::EXPORT_OK
-);
+our @EXPORT_OK =
+  uniq( qw(abs2rel basename canonpath catdir catfile dirname read_file rel2abs write_file),
+    @File::Path::EXPORT, @File::Path::EXPORT_OK );
 our %EXPORT_TAGS = ( 'all' => \@EXPORT_OK );
 
 1;

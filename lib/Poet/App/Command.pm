@@ -1,6 +1,6 @@
 package Poet::App::Command;
 BEGIN {
-  $Poet::App::Command::VERSION = '0.12';
+  $Poet::App::Command::VERSION = '0.13';
 }
 use Poet::Moose;
 use Cwd qw(getcwd);

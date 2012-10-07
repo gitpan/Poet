@@ -1,6 +1,6 @@
 package Poet::Types;
 BEGIN {
-  $Poet::Types::VERSION = '0.12';
+  $Poet::Types::VERSION = '0.13';
 }
 use Moose::Util::TypeConstraints;
 use strict;

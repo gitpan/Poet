@@ -1,6 +1,6 @@
 package Poet::t::Run;
 BEGIN {
-  $Poet::t::Run::VERSION = '0.12';
+  $Poet::t::Run::VERSION = '0.13';
 }
 use Test::Class::Most parent => 'Poet::Test::Class';
 use Poet::Tools qw(read_file);
@@ -10,8 +10,7 @@ use Test::WWW::Mechanize;
 
 sub test_run : Tests {
     my $self = shift;
-    my $poet = $self->temp_env(
-        conf => { layer => 'development', server => { port => 9999 } } );
+    my $poet = $self->temp_env( conf => { layer => 'development', server => { port => 9999 } } );
     my $root_dir = $poet->root_dir;
     my $run_log  = "$root_dir/logs/run.log";
     if ( my $pid = fork() ) {

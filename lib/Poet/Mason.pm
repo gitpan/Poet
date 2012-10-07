@@ -1,6 +1,6 @@
 package Poet::Mason;
 BEGIN {
-  $Poet::Mason::VERSION = '0.12';
+  $Poet::Mason::VERSION = '0.13';
 }    ## no critic (Moose::RequireMakeImmutable)
 use Poet qw($conf $poet);
 use List::MoreUtils qw(uniq);
@@ -32,9 +32,7 @@ method get_options ($class:) {
     my $extra_plugins = $conf->get_list("mason.extra_plugins");
     delete( $configured{extra_plugins} );
     my %options = ( %defaults, %configured );
-    $options{plugins} =
-      [ uniq( @{ $options{plugins} }, '+Poet::Mason::Plugin', @$extra_plugins )
-      ];
+    $options{plugins} = [ uniq( @{ $options{plugins} }, '+Poet::Mason::Plugin', @$extra_plugins ) ];
     return %options;
 }
 
@@ -44,17 +42,16 @@ method get_plugins ($class:) {
 
 method handle_psgi ($class: $psgi_env) {
     my $req      = $poet->app_class('Plack::Request')->new($psgi_env);
+    my $res      = $poet->app_class('Plack::Response')->new();
     my $response = try {
         my $interp = $poet->app_class('Mason')->instance;
-        my $m = $interp->_make_request( req => $req );
-        $m->run( $class->_psgi_comp_path($req),
-            $class->_psgi_parameters($req) );
+        my $m = $interp->_make_request( req => $req, res => $res );
+        $m->run( $class->_psgi_comp_path($req), $class->_psgi_parameters($req) );
         $m->res;
     }
     catch {
         my $err = $_;
-        if ( blessed($err) && $err->isa('Mason::Exception::TopLevelNotFound') )
-        {
+        if ( blessed($err) && $err->isa('Mason::Exception::TopLevelNotFound') ) {
             $poet->app_class('Plack::Response')->new(404);
         }
         else {

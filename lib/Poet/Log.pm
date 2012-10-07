@@ -1,6 +1,6 @@
 package Poet::Log;
 BEGIN {
-  $Poet::Log::VERSION = '0.12';
+  $Poet::Log::VERSION = '0.13';
 }
 use Poet qw($conf $poet);
 use File::Spec::Functions qw(rel2abs);
@@ -71,8 +71,7 @@ method generate_log4perl_config ($class:) {
         "\n",
         $class->_generate_lines( 'log4perl.logger', 'default', \%defaults ),
         map {
-            $class->_generate_lines( "log4perl.logger.$_",
-                $class->_flatten_class_name($_),
+            $class->_generate_lines( "log4perl.logger.$_", $class->_flatten_class_name($_),
                 $classes{$_} )
         } sort( keys(%classes) ),
     );
@@ -81,9 +80,9 @@ method generate_log4perl_config ($class:) {
 method _generate_lines ($class: $logger, $appender, $set) {
     my $full_appender = "log4perl.appender.$appender";
     my @pairs         = (
-        [ $logger => join( ", ", uc( $set->{level} ), $appender ) ],
-        [ $full_appender          => $set->{appender_class} ],
-        [ "$full_appender.layout" => 'Log::Log4perl::Layout::PatternLayout' ],
+        [ $logger        => join( ", ", uc( $set->{level} ), $appender ) ],
+        [ $full_appender => $set->{appender_class} ],
+        [ "$full_appender.layout"                   => 'Log::Log4perl::Layout::PatternLayout' ],
         [ "$full_appender.layout.ConversionPattern" => $set->{layout} ]
     );
     foreach my $key (qw(filename stderr)) {
