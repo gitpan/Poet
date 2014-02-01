@@ -1,7 +1,5 @@
-package Poet::Cache;
-BEGIN {
-  $Poet::Cache::VERSION = '0.13';
-}    ## no critic (Moose::RequireMakeImmutable)
+package Poet::Cache;    ## no critic (Moose::RequireMakeImmutable)
+$Poet::Cache::VERSION = '0.14';
 use Poet qw($conf $poet);
 use Method::Signatures::Simple;
 use Moose;
@@ -17,8 +15,8 @@ method initialize_caching () {
 
 1;
 
-
 __END__
+
 =pod
 
 =head1 NAME
@@ -190,4 +188,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

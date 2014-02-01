@@ -1,7 +1,5 @@
 package Poet::Environment;
-BEGIN {
-  $Poet::Environment::VERSION = '0.13';
-}
+$Poet::Environment::VERSION = '0.14';
 use Carp;
 use File::Slurp;
 use Poet::Moose;
@@ -98,7 +96,7 @@ __PACKAGE__->meta->make_immutable();
 
 1;
 
-
+__END__
 
 =pod
 
@@ -274,7 +272,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-

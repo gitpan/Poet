@@ -1,7 +1,5 @@
 package Poet::t::Import;
-BEGIN {
-  $Poet::t::Import::VERSION = '0.13';
-}
+$Poet::t::Import::VERSION = '0.14';
 use Test::Class::Most parent => 'Poet::Test::Class';
 
 my ( $temp_env, $importer );
@@ -18,10 +16,8 @@ sub test_valid_vars : Tests {
 sub test_import_vars : Tests {
     {
         package TestImportVars;
-BEGIN {
-  $TestImportVars::VERSION = '0.13';
-}
-        BEGIN { $importer->export_to_level( 0, qw($cache $conf $env $poet) ) }
+$TestImportVars::VERSION = '0.14';
+BEGIN { $importer->export_to_level( 0, qw($cache $conf $env $poet) ) }
         use Test::Most;
         isa_ok( $cache, 'CHI::Driver',       '$cache' );
         isa_ok( $conf,  'Poet::Conf',        '$conf' );
@@ -34,10 +30,8 @@ BEGIN {
 sub test_import_bad_vars : Tests {
     {
         package TestImportVars2;
-BEGIN {
-  $TestImportVars2::VERSION = '0.13';
-}
-        use Test::Most;
+$TestImportVars2::VERSION = '0.14';
+use Test::Most;
         throws_ok(
             sub { $importer->export_to_level( 0, qw($bad) ) },
             qr/unknown import var '\$bad': valid import vars are '\$cache', '\$conf', '\$log', '\$poet'/,
@@ -49,20 +43,16 @@ BEGIN {
 sub test_import_methods : Tests {
     {
         package TestImportMethods1;
-BEGIN {
-  $TestImportMethods1::VERSION = '0.13';
-}
-        BEGIN { $importer->export_to_level(0) }
+$TestImportMethods1::VERSION = '0.14';
+BEGIN { $importer->export_to_level(0) }
         use Test::Most;
         ok( TestImportMethods1->can('dp'),        'yes dp' );
         ok( !TestImportMethods1->can('basename'), 'no basename' );
     }
     {
         package TestImportMethods2;
-BEGIN {
-  $TestImportMethods2::VERSION = '0.13';
-}
-        BEGIN { $importer->export_to_level( 0, qw(:file) ) }
+$TestImportMethods2::VERSION = '0.14';
+BEGIN { $importer->export_to_level( 0, qw(:file) ) }
         use Test::Most;
         foreach my $function (qw(dp basename mkpath rmtree)) {
             ok( TestImportMethods2->can($function), "yes $function" );
@@ -70,10 +60,8 @@ BEGIN {
     }
     {
         package TestImportMethods3;
-BEGIN {
-  $TestImportMethods3::VERSION = '0.13';
-}
-        BEGIN { $importer->export_to_level( 0, qw(:web) ) }
+$TestImportMethods3::VERSION = '0.14';
+BEGIN { $importer->export_to_level( 0, qw(:web) ) }
         use Test::Most;
         foreach my $function (qw(dp html_escape uri_escape)) {
             ok( TestImportMethods3->can($function), "yes $function" );

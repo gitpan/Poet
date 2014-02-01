@@ -1,7 +1,5 @@
 package Poet;
-BEGIN {
-  $Poet::VERSION = '0.13';
-}
+$Poet::VERSION = '0.14';
 use Poet::Environment;
 use Method::Signatures::Simple;
 use strict;
@@ -15,7 +13,7 @@ method import ($class:) {
 
 1;
 
-
+__END__
 
 =pod
 
@@ -131,7 +129,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-

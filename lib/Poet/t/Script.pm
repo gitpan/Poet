@@ -1,7 +1,5 @@
 package Poet::t::Script;
-BEGIN {
-  $Poet::t::Script::VERSION = '0.13';
-}
+$Poet::t::Script::VERSION = '0.14';
 use Test::Class::Most parent => 'Poet::Test::Class';
 use Capture::Tiny qw(capture);
 use Cwd qw(realpath);

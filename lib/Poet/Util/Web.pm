@@ -1,7 +1,5 @@
 package Poet::Util::Web;
-BEGIN {
-  $Poet::Util::Web::VERSION = '0.13';
-}
+$Poet::Util::Web::VERSION = '0.14';
 use Data::Dumper;
 use URI;
 use URI::Escape qw(uri_escape uri_unescape);
@@ -57,7 +55,7 @@ sub make_uri {
 
 1;
 
-
+__END__
 
 =pod
 
@@ -120,7 +118,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-

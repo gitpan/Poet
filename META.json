@@ -4,7 +4,7 @@
       "Jonathan Swartz <swartz@pobox.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.200008, CPAN::Meta::Converter version 2.113640",
+   "generated_by" : "Dist::Zilla version 5.012, CPAN::Meta::Converter version 2.131560",
    "license" : [
       "perl_5"
    ],
@@ -34,44 +34,45 @@
       },
       "runtime" : {
          "recommends" : {
-            "Log::Any::Adapter::Log4perl" : 0,
-            "Log::Log4perl" : 0
+            "Log::Any::Adapter::Log4perl" : "0",
+            "Log::Log4perl" : "0"
          },
          "requires" : {
             "CHI" : "0.52",
-            "Capture::Tiny" : 0,
+            "Capture::Tiny" : "0",
+            "Class::Load" : "0",
             "Data::Rmap" : "0.6",
-            "File::ShareDir" : 0,
-            "File::ShareDir::Install" : 0,
-            "File::Slurp" : 0,
-            "File::Spec::Functions" : 0,
-            "Guard" : 0,
-            "JSON::XS" : 0,
-            "Log::Any::Adapter" : 0,
+            "File::ShareDir" : "0",
+            "File::ShareDir::Install" : "0",
+            "File::Slurp" : "0",
+            "File::Spec::Functions" : "0",
+            "Guard" : "0",
+            "JSON::XS" : "0",
+            "Log::Any::Adapter" : "0",
             "Mason" : "2.19",
             "Mason::Plugin::Cache" : "0.04",
-            "Mason::Plugin::HTMLFilters" : 0,
+            "Mason::Plugin::HTMLFilters" : "0",
             "Mason::Plugin::RouterSimple" : "0.05",
             "MasonX::ProcessDir" : "0.02",
             "Method::Signatures::Simple" : "1.02",
             "Moose" : "1.15",
-            "MooseX::App::Cmd" : 0,
-            "MooseX::HasDefaults::RO" : 0,
-            "MooseX::StrictConstructor" : 0,
-            "Plack" : 0,
-            "Plack::Middleware::Debug" : 0,
-            "Plack::Middleware::Session" : 0,
-            "Plack::Session::Store::Cache" : 0,
-            "Try::Tiny" : 0,
-            "URI" : 0,
-            "URI::Escape" : 0,
-            "YAML::XS" : 0
+            "MooseX::App::Cmd" : "0",
+            "MooseX::HasDefaults::RO" : "0",
+            "MooseX::StrictConstructor" : "0",
+            "Plack" : "0",
+            "Plack::Middleware::Debug" : "0",
+            "Plack::Middleware::Session" : "0",
+            "Plack::Session::Store::Cache" : "0",
+            "Try::Tiny" : "0",
+            "URI" : "0",
+            "URI::Escape" : "0",
+            "YAML::XS" : "0"
          }
       },
       "test" : {
          "requires" : {
-            "Test::Class::Most" : 0,
-            "Test::WWW::Mechanize::PSGI" : 0
+            "Test::Class::Most" : "0",
+            "Test::WWW::Mechanize::PSGI" : "0"
          }
       }
    },
@@ -87,6 +88,6 @@
          "web" : "https://github.com/jonswar/perl-poet"
       }
    },
-   "version" : "0.13"
+   "version" : "0.14"
 }
 

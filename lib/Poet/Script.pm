@@ -1,7 +1,5 @@
 package Poet::Script;
-BEGIN {
-  $Poet::Script::VERSION = '0.13';
-}
+$Poet::Script::VERSION = '0.14';
 use Cwd qw(realpath);
 use File::Spec::Functions qw(rel2abs);
 use Method::Signatures::Simple;
@@ -57,8 +55,8 @@ func search_upward ($path) {
 
 1;
 
-
 __END__
+
 =pod
 
 =head1 NAME
@@ -112,4 +110,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

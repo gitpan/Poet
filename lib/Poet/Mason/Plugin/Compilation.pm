@@ -1,7 +1,5 @@
 package Poet::Mason::Plugin::Compilation;
-BEGIN {
-  $Poet::Mason::Plugin::Compilation::VERSION = '0.13';
-}
+$Poet::Mason::Plugin::Compilation::VERSION = '0.14';
 use Mason::PluginRole;
 
 # Add 'use Poet qw($conf $poet :web)' at the top of every component

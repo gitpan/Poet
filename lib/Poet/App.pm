@@ -1,7 +1,5 @@
 package Poet::App;
-BEGIN {
-  $Poet::App::VERSION = '0.13';
-}
+$Poet::App::VERSION = '0.14';
 use Moose;
 
 extends qw(MooseX::App::Cmd);

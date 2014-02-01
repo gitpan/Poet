@@ -1,7 +1,5 @@
 package Poet::Log;
-BEGIN {
-  $Poet::Log::VERSION = '0.13';
-}
+$Poet::Log::VERSION = '0.14';
 use Poet qw($conf $poet);
 use File::Spec::Functions qw(rel2abs);
 use Log::Any::Adapter;
@@ -102,7 +100,7 @@ method _flatten_class_name ($class: $class_name) {
 
 1;
 
-
+__END__
 
 =pod
 
@@ -118,7 +116,7 @@ Poet::Log -- Poet logging
         level: info
         output: poet.log
         layout: "%d{dd/MMM/yyyy:HH:mm:ss.SS} [%p] %c - %m - %F:%L - %P%n"
-      category:
+      class:
         CHI:
           level: debug
           output: chi.log
@@ -314,7 +312,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-

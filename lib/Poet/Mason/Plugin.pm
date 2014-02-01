@@ -1,7 +1,5 @@
 package Poet::Mason::Plugin;
-BEGIN {
-  $Poet::Mason::Plugin::VERSION = '0.13';
-}
+$Poet::Mason::Plugin::VERSION = '0.14';
 use Moose;
 with 'Mason::Plugin';
 

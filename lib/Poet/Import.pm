@@ -1,7 +1,5 @@
 package Poet::Import;
-BEGIN {
-  $Poet::Import::VERSION = '0.13';
-}
+$Poet::Import::VERSION = '0.14';
 use Carp;
 use Poet::Moose;
 use Try::Tiny;
@@ -89,7 +87,7 @@ method provide_var_poet ($caller) {
 
 1;
 
-
+__END__
 
 =pod
 
@@ -259,7 +257,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-

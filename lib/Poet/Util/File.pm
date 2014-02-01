@@ -1,7 +1,5 @@
 package Poet::Util::File;
-BEGIN {
-  $Poet::Util::File::VERSION = '0.13';
-}
+$Poet::Util::File::VERSION = '0.14';
 use File::Basename qw(basename dirname);
 use File::Path qw();
 use File::Slurp qw(read_dir read_file write_file);
@@ -20,7 +18,7 @@ our %EXPORT_TAGS = ( 'all' => \@EXPORT_OK );
 
 1;
 
-
+__END__
 
 =pod
 
@@ -81,7 +79,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-

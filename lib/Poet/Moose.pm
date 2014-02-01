@@ -1,7 +1,5 @@
-package Poet::Moose;
-BEGIN {
-  $Poet::Moose::VERSION = '0.13';
-}    ## no critic (Moose::RequireMakeImmutable)
+package Poet::Moose;    ## no critic (Moose::RequireMakeImmutable)
+$Poet::Moose::VERSION = '0.14';
 use Moose                      ();
 use MooseX::HasDefaults::RO    ();
 use MooseX::StrictConstructor  ();
@@ -23,7 +21,7 @@ sub init_meta {
 
 1;
 
-
+__END__
 
 =pod
 
@@ -62,7 +60,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-

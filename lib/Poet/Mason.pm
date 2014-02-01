@@ -1,7 +1,5 @@
-package Poet::Mason;
-BEGIN {
-  $Poet::Mason::VERSION = '0.13';
-}    ## no critic (Moose::RequireMakeImmutable)
+package Poet::Mason;    ## no critic (Moose::RequireMakeImmutable)
+$Poet::Mason::VERSION = '0.14';
 use Poet qw($conf $poet);
 use List::MoreUtils qw(uniq);
 use Method::Signatures::Simple;
@@ -76,7 +74,7 @@ method _psgi_parameters ($class: $req) {
 
 1;
 
-
+__END__
 
 =pod
 
@@ -284,7 +282,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-
