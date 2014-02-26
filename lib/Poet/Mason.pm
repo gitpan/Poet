@@ -1,5 +1,5 @@
 package Poet::Mason;    ## no critic (Moose::RequireMakeImmutable)
-$Poet::Mason::VERSION = '0.14';
+$Poet::Mason::VERSION = '0.15';
 use Poet qw($conf $poet);
 use List::MoreUtils qw(uniq);
 use Method::Signatures::Simple;

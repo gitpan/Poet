@@ -1,5 +1,5 @@
 package Poet::t::Conf;
-$Poet::t::Conf::VERSION = '0.14';
+$Poet::t::Conf::VERSION = '0.15';
 use Poet::Tools qw(read_file tempdir_simple write_file);
 use IPC::System::Simple qw(run);
 use Test::Class::Most parent => 'Poet::Test::Class';

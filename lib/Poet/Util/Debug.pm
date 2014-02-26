@@ -1,5 +1,5 @@
 package Poet::Util::Debug;
-$Poet::Util::Debug::VERSION = '0.14';
+$Poet::Util::Debug::VERSION = '0.15';
 use Carp qw(longmess);
 use Data::Dumper;
 use strict;

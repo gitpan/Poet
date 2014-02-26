@@ -1,5 +1,5 @@
 package Poet::Mechanize;
-$Poet::Mechanize::VERSION = '0.14';
+$Poet::Mechanize::VERSION = '0.15';
 use Poet::Environment;
 use Plack::Util;
 use base qw(Test::WWW::Mechanize::PSGI);

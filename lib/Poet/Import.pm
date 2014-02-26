@@ -1,5 +1,5 @@
 package Poet::Import;
-$Poet::Import::VERSION = '0.14';
+$Poet::Import::VERSION = '0.15';
 use Carp;
 use Poet::Moose;
 use Try::Tiny;

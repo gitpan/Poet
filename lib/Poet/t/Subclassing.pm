@@ -1,5 +1,5 @@
 package Poet::t::Subclassing;
-$Poet::t::Subclassing::VERSION = '0.14';
+$Poet::t::Subclassing::VERSION = '0.15';
 use Poet::Tools qw(write_file);
 use Test::Class::Most parent => 'Poet::Test::Class';
 
@@ -40,7 +40,7 @@ sub test_subclassing : Tests {
 
     {
         package Foo;
-$Foo::VERSION = '0.14';
+$Foo::VERSION = '0.15';
 Poet->import(qw($cache $conf $log $poet));
         use Test::More;
         is( $Foo::cache->chi_root_class, 'TestApp::Cache', '$cache' );

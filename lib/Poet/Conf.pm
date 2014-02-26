@@ -1,5 +1,5 @@
 package Poet::Conf;
-$Poet::Conf::VERSION = '0.14';
+$Poet::Conf::VERSION = '0.15';
 use Carp;
 use Cwd qw(realpath);
 use Data::Rmap qw(rmap_scalar);

@@ -1,5 +1,5 @@
 package Poet::Test::Class;
-$Poet::Test::Class::VERSION = '0.14';
+$Poet::Test::Class::VERSION = '0.15';
 use Method::Signatures::Simple;
 use Carp;
 use Cwd qw(realpath);

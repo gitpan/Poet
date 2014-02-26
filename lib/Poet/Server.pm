@@ -1,5 +1,5 @@
 package Poet::Server;
-$Poet::Server::VERSION = '0.14';
+$Poet::Server::VERSION = '0.15';
 use Poet qw($conf $poet);
 use Method::Signatures::Simple;
 use Class::Load;

@@ -1,5 +1,5 @@
 package Poet::t::PSGIHandler;
-$Poet::t::PSGIHandler::VERSION = '0.14';
+$Poet::t::PSGIHandler::VERSION = '0.15';
 use Test::Class::Most parent => 'Poet::Test::Class';
 use Capture::Tiny qw();
 use Guard;
@@ -114,13 +114,15 @@ sub test_args : Tests {
 $.a
 $.b => (isa => "Int")
 $.c => (isa => "ArrayRef");
-$.d => (isa => "ArrayRef[Int]");
+$.d => (isa => "ArrayRef[Int]", default => sub { [10] });
+$.e => (isa => "ArrayRef[Int]", default => sub { [10] });
 </%args>
 
 a = <% $.a %>
 b = <% $.b %>
 c = <% join(",", @{$.c}) %>
 d = <% join(",", @{$.d}) %>
+e = <% join(",", @{$.e}) %>
 
 % my $args = $.args;
 <% Mason::Util::dump_one_line($args) %>
@@ -130,6 +132,7 @@ a = 2
 b = 4
 c = 5,6
 d = 7,8
+e = 10
 
 {a => '2',b => '4',c => ['5','6'],d => ['7','8']}
 EOF

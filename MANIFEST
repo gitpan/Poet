@@ -74,7 +74,6 @@ lib/Poet/t/Subclassing.pm
 lib/Poet/t/Util.pm
 lib/TAGS
 perlcriticrc
-perltidy.LOG
 share/generate.skel/DOT_poet_root
 share/generate.skel/bin/app.psgi
 share/generate.skel/bin/get.pl

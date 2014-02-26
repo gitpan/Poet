@@ -1,5 +1,5 @@
 package Poet::Mason::Plugin::Request;
-$Poet::Mason::Plugin::Request::VERSION = '0.14';
+$Poet::Mason::Plugin::Request::VERSION = '0.15';
 use Mason::PluginRole;
 use Poet qw($conf $poet);
 use Poet::Plack::Response;
@@ -36,7 +36,9 @@ around 'construct_page_component' => sub {
           grep { $_->has_type_constraint && $_->type_constraint->is_a_type_of('ArrayRef') }
           $compc->meta->get_all_attributes;
         foreach my $attr (@array_attrs) {
-            $args->{$attr} = [ $orig_args->get_all($attr) ];
+            if ( my @values = $orig_args->get_all($attr) ) {
+                $args->{$attr} = \@values;
+            }
         }
     }
 

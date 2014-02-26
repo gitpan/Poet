@@ -1,5 +1,5 @@
 package Poet::Log;
-$Poet::Log::VERSION = '0.14';
+$Poet::Log::VERSION = '0.15';
 use Poet qw($conf $poet);
 use File::Spec::Functions qw(rel2abs);
 use Log::Any::Adapter;

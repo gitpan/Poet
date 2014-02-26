@@ -1,5 +1,5 @@
 package Poet::t::App;
-$Poet::t::App::VERSION = '0.14';
+$Poet::t::App::VERSION = '0.15';
 use Test::Class::Most parent => 'Poet::Test::Class';
 
 sub test_app_name_to_dir : Tests {
