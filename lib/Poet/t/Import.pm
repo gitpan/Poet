@@ -1,5 +1,5 @@
 package Poet::t::Import;
-$Poet::t::Import::VERSION = '0.15';
+$Poet::t::Import::VERSION = '0.16';
 use Test::Class::Most parent => 'Poet::Test::Class';
 
 my ( $temp_env, $importer );
@@ -16,7 +16,7 @@ sub test_valid_vars : Tests {
 sub test_import_vars : Tests {
     {
         package TestImportVars;
-$TestImportVars::VERSION = '0.15';
+$TestImportVars::VERSION = '0.16';
 BEGIN { $importer->export_to_level( 0, qw($cache $conf $env $poet) ) }
         use Test::Most;
         isa_ok( $cache, 'CHI::Driver',       '$cache' );
@@ -30,7 +30,7 @@ BEGIN { $importer->export_to_level( 0, qw($cache $conf $env $poet) ) }
 sub test_import_bad_vars : Tests {
     {
         package TestImportVars2;
-$TestImportVars2::VERSION = '0.15';
+$TestImportVars2::VERSION = '0.16';
 use Test::Most;
         throws_ok(
             sub { $importer->export_to_level( 0, qw($bad) ) },
@@ -43,7 +43,7 @@ use Test::Most;
 sub test_import_methods : Tests {
     {
         package TestImportMethods1;
-$TestImportMethods1::VERSION = '0.15';
+$TestImportMethods1::VERSION = '0.16';
 BEGIN { $importer->export_to_level(0) }
         use Test::Most;
         ok( TestImportMethods1->can('dp'),        'yes dp' );
@@ -51,7 +51,7 @@ BEGIN { $importer->export_to_level(0) }
     }
     {
         package TestImportMethods2;
-$TestImportMethods2::VERSION = '0.15';
+$TestImportMethods2::VERSION = '0.16';
 BEGIN { $importer->export_to_level( 0, qw(:file) ) }
         use Test::Most;
         foreach my $function (qw(dp basename mkpath rmtree)) {
@@ -60,7 +60,7 @@ BEGIN { $importer->export_to_level( 0, qw(:file) ) }
     }
     {
         package TestImportMethods3;
-$TestImportMethods3::VERSION = '0.15';
+$TestImportMethods3::VERSION = '0.16';
 BEGIN { $importer->export_to_level( 0, qw(:web) ) }
         use Test::Most;
         foreach my $function (qw(dp html_escape uri_escape)) {

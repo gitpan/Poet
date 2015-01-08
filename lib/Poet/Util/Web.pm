@@ -1,5 +1,5 @@
 package Poet::Util::Web;
-$Poet::Util::Web::VERSION = '0.15';
+$Poet::Util::Web::VERSION = '0.16';
 use Data::Dumper;
 use URI;
 use URI::Escape qw(uri_escape uri_unescape);

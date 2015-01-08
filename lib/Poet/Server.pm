@@ -1,5 +1,5 @@
 package Poet::Server;
-$Poet::Server::VERSION = '0.15';
+$Poet::Server::VERSION = '0.16';
 use Poet qw($conf $poet);
 use Method::Signatures::Simple;
 use Class::Load;
@@ -32,7 +32,7 @@ method get_plackup_options () {
 
         # In live mode, use access log instead of STDERR
         #
-        push( @options, '--access_log', $poet->logs_path("access.log") );
+        push( @options, '--access-log', $poet->logs_path("access.log") );
     }
 
     return @options;

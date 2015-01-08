@@ -1,7 +1,7 @@
 # Test Log::Log4perl or Log::Any::Adapter::Log4perl not being present.
 #
 package Poet::t::NoLog4perl;
-$Poet::t::NoLog4perl::VERSION = '0.15';
+$Poet::t::NoLog4perl::VERSION = '0.16';
 use Test::Class::Most parent => 'Poet::Test::Class';
 use Poet::Tools qw(read_file);
 use strict;

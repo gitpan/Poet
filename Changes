@@ -2,6 +2,11 @@ Revision history for Poet
 
 ** denotes an incompatible change
 
+0.16  Jan 7, 2015
+
+* Fixes
+  - Fix --access-log in Poet/Server.pm (jomo666)
+
 0.15  Feb 26, 2014
 
 * Fixes

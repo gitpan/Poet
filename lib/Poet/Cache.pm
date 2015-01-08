@@ -1,5 +1,5 @@
 package Poet::Cache;    ## no critic (Moose::RequireMakeImmutable)
-$Poet::Cache::VERSION = '0.15';
+$Poet::Cache::VERSION = '0.16';
 use Poet qw($conf $poet);
 use Method::Signatures::Simple;
 use Moose;

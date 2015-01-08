@@ -1,5 +1,5 @@
 package Poet::Script;
-$Poet::Script::VERSION = '0.15';
+$Poet::Script::VERSION = '0.16';
 use Cwd qw(realpath);
 use File::Spec::Functions qw(rel2abs);
 use Method::Signatures::Simple;

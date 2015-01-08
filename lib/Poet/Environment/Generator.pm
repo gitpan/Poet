@@ -1,5 +1,5 @@
 package Poet::Environment::Generator;
-$Poet::Environment::Generator::VERSION = '0.15';
+$Poet::Environment::Generator::VERSION = '0.16';
 use Cwd qw(realpath);
 use File::Find;
 use File::ShareDir;

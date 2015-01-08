@@ -1,5 +1,5 @@
 package Poet::Util::File;
-$Poet::Util::File::VERSION = '0.15';
+$Poet::Util::File::VERSION = '0.16';
 use File::Basename qw(basename dirname);
 use File::Path qw();
 use File::Slurp qw(read_dir read_file write_file);

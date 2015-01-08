@@ -1,5 +1,5 @@
 package Poet::Module::Mask;
-$Poet::Module::Mask::VERSION = '0.15';
+$Poet::Module::Mask::VERSION = '0.16';
 use strict;
 use warnings;
 use base qw(Module::Mask);

@@ -1,5 +1,5 @@
 package Poet::t::PSGIHandler;
-$Poet::t::PSGIHandler::VERSION = '0.15';
+$Poet::t::PSGIHandler::VERSION = '0.16';
 use Test::Class::Most parent => 'Poet::Test::Class';
 use Capture::Tiny qw();
 use Guard;

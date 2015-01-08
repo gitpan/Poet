@@ -1,7 +1,7 @@
 # Internal Poet tools
 #
 package Poet::Tools;
-$Poet::Tools::VERSION = '0.15';
+$Poet::Tools::VERSION = '0.16';
 use Carp;
 use Class::Load;
 use Class::MOP;

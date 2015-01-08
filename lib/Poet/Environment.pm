@@ -1,5 +1,5 @@
 package Poet::Environment;
-$Poet::Environment::VERSION = '0.15';
+$Poet::Environment::VERSION = '0.16';
 use Carp;
 use File::Slurp;
 use Poet::Moose;

@@ -1,5 +1,5 @@
 package Poet::Mason::Plugin::Request;
-$Poet::Mason::Plugin::Request::VERSION = '0.15';
+$Poet::Mason::Plugin::Request::VERSION = '0.16';
 use Mason::PluginRole;
 use Poet qw($conf $poet);
 use Poet::Plack::Response;
